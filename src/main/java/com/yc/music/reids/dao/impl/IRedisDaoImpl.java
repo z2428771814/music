@@ -17,7 +17,7 @@ import com.yc.music.redis.dao.IRedisDao;
 
 
 @Repository
-public class RedisDaoImpl implements IRedisDao {
+public class IRedisDaoImpl implements IRedisDao {
 	
 	@Autowired
 	private RedisTemplate<String, Object> redisTemplate;

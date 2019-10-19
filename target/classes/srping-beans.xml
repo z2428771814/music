@@ -71,7 +71,7 @@
 		<property name="maxInMemorySize" value="4096"></property>
 	</bean>
 	
-	<bean id="sendMailUtil" class="com.yc.util.SendMailUtil">
+	<bean id="sendMailUtil" class="com.yc.music.util.SendMailUtil">
 		<property name="sendEmail" value="z2428771814@163.com"></property>
 		<property name="pwd" value="zxc123"></property>
 	</bean>

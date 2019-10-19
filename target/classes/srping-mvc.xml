@@ -35,7 +35,7 @@
     <mvc:interceptors>
      	<mvc:interceptor>
     		<mvc:mapping path="/admin/page/**"/>
-    		<bean class="com.yc.interceptor.BackForwardInterceptor" ></bean>
+    		<bean class="com.yc.music.interceptor.BackForwardInterceptor" ></bean>
     	</mvc:interceptor>
     
     </mvc:interceptors>

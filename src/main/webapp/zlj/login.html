@@ -40,7 +40,7 @@
                             	<div>
                                 <input type="text" name="yzm" id="yzm" class="yzm_input"
                                 placeholder="请输入验证码">
-                                <img class="code" src="getcode"  onclick="refreshCode(this)">
+                                <img class="code" src="../getcode"  onclick="refreshCode(this)">
                                 </div>
                                    
                                 <div class="code_error" id="code_error">验证码错误</div>
@@ -80,7 +80,7 @@
 	
 		//切换验证码
 		function refreshCode(obj){
-			obj.src="getcode?"+Math.random();
+			obj.src="../getcode?"+Math.random();
 		}
 	/*	$(function(){
 			$("#myform .mpt").focus(function(){
@@ -103,8 +103,8 @@
 				return;
 			}
 			
-			$.post("member/login",{
-				nickName:nickname,
+			$.post("../user/login",{
+				uname:nickname,
 				pwd:pwd,
 				realName:yzm
 			},function(data){
@@ -116,7 +116,7 @@
 					var temp = localStorage.getItem("targetURL");
 					console.log(temp);
 					if( temp == null || temp == "" || temp == undefined ){
-						location.href="index.html";
+						location.href="../tzs/index.html";
 					}else{
 						localStorage.removeItem("targetURL");
 						location.href=temp;
