@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <title>天天生鲜-登陆</title>
-<link rel="icon" href="images/copylogo.png">
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/login.css">
+<link rel="icon" href="zlj/images/copylogo.png">
+<link rel="stylesheet" href="zlj/css/reset.css">
+<link rel="stylesheet" href="zlj/css/login.css">
 </head>
-<script src="js/jquery-1.12.4.min.js"></script>
+<script src="zlj/js/jquery-1.12.4.min.js"></script>
 <body>
 	<!-- logo区区域 -->
 	<div class="login_top">
@@ -40,7 +40,7 @@
                             	<div>
                                 <input type="text" name="yzm" id="yzm" class="yzm_input"
                                 placeholder="请输入验证码">
-                                <img class="code" src="../getcode"  onclick="refreshCode(this)">
+                                <img class="code" src="getcode"  onclick="refreshCode(this)">
                                 </div>
                                    
                                 <div class="code_error" id="code_error">验证码错误</div>
@@ -80,7 +80,7 @@
 	
 		//切换验证码
 		function refreshCode(obj){
-			obj.src="../getcode?"+Math.random();
+			obj.src="getcode?"+Math.random();
 		}
 	/*	$(function(){
 			$("#myform .mpt").focus(function(){
@@ -103,7 +103,7 @@
 				return;
 			}
 			
-			$.post("../user/login",{
+			$.post("user/login",{
 				uname:nickname,
 				pwd:pwd,
 				realName:yzm
@@ -116,7 +116,7 @@
 					var temp = localStorage.getItem("targetURL");
 					console.log(temp);
 					if( temp == null || temp == "" || temp == undefined ){
-						location.href="../tzs/index.html";
+						location.href="index.html";
 					}else{
 						localStorage.removeItem("targetURL");
 						location.href=temp;
