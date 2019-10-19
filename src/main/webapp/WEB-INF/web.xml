@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+  <display-name>Archetype Created Web Application</display-name>
+  
+  	
+	<!-- 这个是过滤器 要导入一个spring web的jar包 ，-->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+		<init-param>
+		<!-- 这个是请求 -->
+			<param-name>forceRequestEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+		<!-- 这个是响应 -->
+			<param-name>forceResponseEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<!-- 这个是过滤器的映射地址，就是要求过滤映射到哪些地方 -->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
+	
+	
+	
+	<!-- 图片上传路径的指定 -->
+	<context-param>
+		<param-name>uploadpath</param-name>
+		<param-value>pics</param-value>
+	</context-param>
+	
+	<!-- 定义spring的监听器，用来加载spring -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- 配置我们自己写的请求然后作出响应 -->
+	<servlet>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath*:srping-mvc.xml</param-value>
+		</init-param>
+		<!-- 数字越小，越先载入 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 初始化spring容器 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:srping-beans.xml</param-value>
+	</context-param>
+	
+	
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+
+	</welcome-file-list>
+  
+  
+</web-app>

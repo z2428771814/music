@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+       
+    <context:component-scan base-package="com.yc" use-default-filters="false">
+    <!-- 上下文的筛选器 -->
+		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RequestMapping"/>
+		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ResponseBody"/>
+    </context:component-scan> 
+    
+    <!-- 视图配置器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    	<property name="Prefix" value="/WEB-INF/manager/"></property>
+    	<property name="Suffix" value=".jsp"></property>
+    </bean>
+    
+    <!-- 放过静态资源 -->
+    <mvc:default-servlet-handler/>
+    
+    <!-- 启动mvc注解 -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+    
+   <!-- 这个是添加监听事件 -->
+    <mvc:interceptors>
+     	<mvc:interceptor>
+    		<mvc:mapping path="/admin/page/**"/>
+    		<bean class="com.yc.interceptor.BackForwardInterceptor" ></bean>
+    	</mvc:interceptor>
+    
+    </mvc:interceptors>
+    
+   
+  
+	
+
+
+
+</beans>
