@@ -47,14 +47,14 @@ public class SendMailUtil {
 			//设置收件人，寄件人
 			messageHelper.setTo(receiveEmail);
 			messageHelper.setFrom(sendEmail);
-			messageHelper.setSubject("天天注册中心");
+			messageHelper.setSubject("扣扣音乐注册中心");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
 			String str="<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body>"
 					+ "<p style='font-size:20px;font-weight:bold;'>尊敬的:"+name+",你好！"
 					+ "</p><p style='text-indent:2em;font-size:20px'>"
-					+ "欢迎注册天天生鲜网，你本次的注册码是<span style='font-size:30px;font-weight:bold;color:red'>"
+					+ "欢迎注册QQ音乐网站，你本次的注册码是<span style='font-size:30px;font-weight:bold;color:red'>"
 					+ code+"</span>,3分钟之类有效，请尽快使用！</p><p style='font-size:18px'>"
-					+ "技术部顾问：周龙基</p><span style='font-size:18px;float:right;margin-right:60px;' >"
+					+ "技术部顾问：周**</p><span style='font-size:18px;float:right;margin-right:60px;' >"
 					+ sdf.format(new Date())+"</span></body></html>";
 			//假如没有这个true就不是html形式发送，单纯的数字放松，有了这个就识别是网页内容发送解析
 			messageHelper.setText(str, true);

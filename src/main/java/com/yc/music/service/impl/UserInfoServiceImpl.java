@@ -22,4 +22,13 @@ public class UserInfoServiceImpl implements IUserInfoService {
 		return userInfoMapper.login(userInfo);
 	}
 
+	@Override
+	public int add(UserInfo userInf) {
+		if( StringUtil.checkNull( userInf.getEmail(),userInf.getPwd(),userInf.getUname() ) ){
+			return -1;
+		}
+		
+		return userInfoMapper.add(userInf);
+	}
+
 }

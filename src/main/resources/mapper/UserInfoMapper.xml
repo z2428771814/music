@@ -7,4 +7,8 @@
 		select uid,uname,pwd,email,vip,pic,status,realName from userinfo where 
 		( uname=#{uname} or email=#{uname} ) and pwd=#{pwd}
 	</select>
+	
+	<insert id="add" parameterType="UserInfo" >
+		insert into userinfo values(0,#{uname},#{pwd},#{email},0,null,null,null);
+	</insert>
 </mapper>

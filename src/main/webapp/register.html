@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <title>天天生鲜-注册</title>
  <link rel="shortcut icon" href="images/copylogo.png">
- <link rel="stylesheet" href="css/reset.css">
- <link rel="stylesheet" href="css/reg.css">
- <link rel="stylesheet" href="css/unlock.css">
- <link rel="stylesheet" href="css/foot.css">
- <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
- <script src="js/unlock.js"></script>
+ <link rel="stylesheet" href="zlj/css/reset.css">
+ <link rel="stylesheet" href="zlj/css/reg.css">
+ <link rel="stylesheet" href="zlj/css/unlock.css">
+ <link rel="stylesheet" href="zlj/css/foot.css">
+ <script type="text/javascript" src="zlj/js/jquery-3.4.1.min.js"></script>
+ <script src="zlj/js/unlock.js"></script>
 </head>
 
 <body>
@@ -30,8 +30,8 @@
              	<form id="myform">
                     <ul>
                         <li>
-                            <label for="nickName">用户名:</label>
-                            <input type="text" id="nickName" name="nickName" placeholder="请输入您的用户名" required >
+                            <label for="uname">用户名:</label>
+                            <input type="text" id="uname" name="uname" placeholder="请输入您的用户名" required >
                             <span class="error_tip">提示信息</span>
                         </li>
                         <li>
@@ -55,18 +55,14 @@
                             <input type="text" id="realName" name="realName" placeholder="请输入验证码">
                             <span class="error_tip">提示信息</span>
                         </li>
-                        <li>
-                            <label for="tel">电话号码:</label>
-                            <input type="text" id="tel" name="tel" placeholder="请输入有效的邮箱地址">
-                            <span class="error_tip">提示信息</span>
-                        </li>
+                      
                         <li  class="row">
                         	<!-- 滑块验证-->
                             <div class="bar"></div>
                         </li>
                         <li class="agreement">
                             <input type="checkbox" id="allow" name="allow" checked>
-                            <label for="allow">同意<a href="#">"天天生鲜用户使用协议"</a></label>
+                            <label for="allow">同意<a href="#">"扣扣音乐使用协议"</a></label>
                             <span class="error_tip2">提示信息2</span>
                         </li>
                          <li>
@@ -90,7 +86,7 @@
     	<p>CopyRight &copy; 2019 衡阳市源辰信息科技有限公司 All Rights Reserverd</p>
         <p>电话：0734-8355998 湘ICP备16015987号</p>
     </div>
-    <script src="js/register.js"></script>
+    <script src="zlj/js/register.js"></script>
     <script>
     	$('.bar').slideToUnlock({
 		});

@@ -1,6 +1,8 @@
 package com.yc.music.bean;
 
-public class UserInfo {
+import java.io.Serializable;
+
+public class UserInfo implements Serializable {
 	private int uid;
 	private String uname;
 	private String pwd;

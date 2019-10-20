@@ -14,4 +14,11 @@ public interface UserInfoMapper {
 	 * @return
 	 */
 	public UserInfo login(UserInfo userInfo);
+	
+	/**
+	 * 注册用户
+	 * @param userInf
+	 * @return
+	 */
+	public int add(UserInfo userInf);
 }

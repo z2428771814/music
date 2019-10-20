@@ -1,18 +1,18 @@
 // JavaScript Document
 
 //获取元素
-var  $nickname = $("#nickname");
+var  $uname = $("#uname");
 //输出到控制台
-console.log($nickname);
+console.log($uname);
 
 //用户名验证
 //失去焦点事件
-$("#nickname").blur (function(){
+$("#uname").blur (function(){
 	//获取用户输入的用户名
-	var nickname = $("#nickname").val();
-	console.log(nickname);
+	var uname = $("#uname").val();
+	console.log(uname);
 	//判断用户名的格式
-	if(nickname == '' ){
+	if(uname == '' ){
 		console.log("用户不能为空");
 		//给当前对象的下一个标签设值
 		$(this).next().html("用户不能为空");
@@ -27,8 +27,8 @@ $("#nickname").blur (function(){
 	var flag = reg.test(nickname);
 	console.log(flag);
 	*/
-	console.log("我的账号为"+nickname);
-	if( !reg.test(nickname) ){
+	console.log("我的账号为"+uname);
+	if( !reg.test(uname) ){
 		//给当前对象的下一个标签设值
 		$(this).next().html("用户名必须是6-15位的英文或数字");
 		//未设值前该标签是隐藏的  此时就必须显示来
@@ -37,7 +37,7 @@ $("#nickname").blur (function(){
 });
 
 //聚焦事件
-$("#nickname").focus(function(){
+$("#uname").focus(function(){
 	//隐藏
 	$(this).next().hide();
 })
@@ -137,10 +137,10 @@ function check_tel(){
 
 //获取验证码
 function sendCode(){
-	$("#nickname").blur();
+	$("#uname").blur();
 	$("#email").blur();
 	console.log("我在钱面");
-	if( $("#nickName").next().css("display") != "none" ){
+	if( $("#uname").next().css("display") != "none" ){
 		return;
 	}
 	if( $("#email").next().next().css("display") != "none"  ){
@@ -148,7 +148,7 @@ function sendCode(){
 	}
 	console.log("我在中面");
 	//昵称
-	var nickName = $.trim( $("#nickname").val() );
+	var uname = $.trim( $("#uname").val() );
 	
 	//获取邮箱
 	var email = $.trim( $("#email").val() );
@@ -156,11 +156,11 @@ function sendCode(){
 	//不允许在点击
 	$("#getCode").attr("disabled","true");
 	
-	console.log("我在后面"+"参数为"+email+nickName);
+	console.log("我在后面"+"参数为"+email+uname);
 	//请求方式，地址，参数，回掉函数
-	$.post("member/code",{
+	$.post("user/code",{
 		receiveEmail:email,
-		name:nickName
+		name:uname
 	},function(data){
 		data = parseInt( $.trim(data) );
 		if( data>0 ){
@@ -216,7 +216,7 @@ function checkRegister(){
 		}
 	}
 	
-	$.post("member/reg",
+	$.post("user/reg",
 		$("#myform").serialize()
 	,function(data){
 		data=parseInt( $.trim(data) );

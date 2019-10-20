@@ -1,6 +1,11 @@
 package com.yc.music.bean;
 
-public class AdminInfo {
+import java.io.Serializable;
+
+public class AdminInfo implements Serializable{
+	
+	
+	
 	private int aid;
 	private String aname;
 	private String pwd;
