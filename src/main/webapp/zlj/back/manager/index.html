@@ -1,15 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html lang="zh-CN">
 <head>
 <title>源辰-后台首页</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../back/css/common.css">
-<link rel="stylesheet" href="../back/css/style.css">
-<link rel="shortcut icon" href="../images/logo.png" type="image/x-icon" />
-<script type="text/javascript" src="../back/js/jquery.min.js"></script>
-<script type="text/javascript" src="../back/js/jquery.SuperSlide.js"></script>
+<link rel="stylesheet" href="zlj/back/css/common.css">
+<link rel="stylesheet" href="zlj/back/css/style.css">
+<link rel="shortcut icon" href="zlj/back/images/logo.png" type="image/x-icon" />
+<script type="text/javascript" src="zlj/back/js/jquery.min.js"></script>
+<script type="text/javascript" src="zlj/back/js/jquery.SuperSlide.js"></script>
+
 <script type="text/javascript">
     $(function(){
         $(".sideMenu").slide({
@@ -30,6 +29,20 @@
         $(window).resize(function() {
             scrollWW();
         });
+        //判断管理员
+        $.post("admin/obtain",null,function(data){
+        	console.log(data+"---");
+        	
+			if( data.status == 2 ){
+				//拼接网页
+				var str = '<li><a href="javascript:void(0)" onclick="showpage(this,';
+				str += "'admin.html')";
+				str += '">都统管理</a></li>';
+				  
+				$("#addmin").append($(str));
+			}
+		},"json");
+        
     });
     function scrollWW(){
         if($(".side").height()<$(".sideMenu").height()){
@@ -64,7 +77,7 @@
     }
 
     function showpage(obj,page){
-        $("#rightMain").attr("src",page);
+        $("#rightMain").attr("src","zlj/back/manager/"+page);
         $("#sideMenu li").removeClass("on");
         $(obj).parent().addClass("on");
         $("#here_area").text("当前位置："+$(obj).text());
@@ -86,7 +99,7 @@
                     <a href="../index.html" id="out">&nbsp;</a>
                 </div>
                 <div class="info_center">
-                 ${currentLoginAdmin.aname}
+                   源辰
                     <span id="nt">通知</span><span><a href="#" id="notice">3</a></span>
                 </div>
             </div>
@@ -100,32 +113,34 @@
 <div class="side">
     <div class="sideMenu" id="sideMenu" style="margin:0 auto">
         <h3>用户信息</h3>
-        <ul>
-            <li><a href="javascript:void(0)" onclick="showpage(this,'page/admin.html')">添加管理员</a></li>
-            <li><a href="javascript:void(0)" onclick="showpage(this,'page/view.html')">管理员信息</a></li>
-            <li><a href="javascript:void(0)" onclick="showpage(this,'page/welcome.html')">会员信息</a></li>
+        <ul id="addmin">
+           
+            <li><a href="javascript:void(0)" onclick="showpage(this,'view.html')">管理员信息</a></li>
+            <li><a href="javascript:void(0)" onclick="showpage(this,'welcome.html')">会员信息</a></li>
         </ul>
         <h3>商品类型</h3>
         <ul>
-            <li><a href="javascript:void(0)" onclick="showpage(this,'page/type.html')">商品类型</a></li>
+            <li><a href="javascript:void(0)" onclick="showpage(this,'type.html')">商品类型</a></li>
         </ul>
         <h3>商品信息</h3>
         <ul>
-            <li><a href="javascript:void(0)" onclick="showpage(this,'page/goods.html')">添加商品</a></li>
-            <li><a href="javascript:void(0)" onclick="showpage(this,'page/welcome.html')">浏览商品</a></li>
+            <li><a href="javascript:void(0)" onclick="showpage(this,'goods.html')">添加商品</a></li>
+            <li><a href="javascript:void(0)" onclick="showpage(this,'welcome.html')">浏览商品</a></li>
         </ul>
     </div>
 </div>
 <div class="main">
-    <iframe name="right" id="rightMain" src="page/welcome.html" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
+    <iframe name="right" id="rightMain" src="welcome.html" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
 </div>
 <div class="bottom">
     <div id="bottom_bg"><a class="copy" href="http://www.hyycinfo.com">源辰信息科技有限公司</a>&copy;版权所有 0734-8355998</div>
 </div>
 <div class="scroll">
-
     <a href="javascript:;" class="per" title="使用鼠标滚轴滚动侧栏" onclick="menuScroll(1);"></a>
     <a href="javascript:;" class="next" title="使用鼠标滚轴滚动侧栏" onclick="menuScroll(2);"></a>
 </div>
+
+
+
 </body>
 </html>

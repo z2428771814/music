@@ -1,5 +1,7 @@
 package com.yc.music.interceptor;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,10 +13,16 @@ public class BackForwardInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		String path=request.getServletPath();
-		path=path.substring( path.lastIndexOf("/")+1 );
-		System.out.println( "/WEB-INF/manager"+path );
-		request.getRequestDispatcher("/WEB-INF/manager/"+path ).forward(request, response);
+	
+		if( request.getSession().getAttribute("currentLoginAdmin") == null ){
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('请先登录。。。');location.href='../index.html'</script>");
+			out.flush();
+			return false;
+		}
+		
+		request.getRequestDispatcher("zlj/back/manager/index.html" ).forward(request, response);
 		return false;
 	}
 

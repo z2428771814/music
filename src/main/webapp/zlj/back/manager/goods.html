@@ -2,25 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../../back/css/common.css">
-<link rel="stylesheet" href="../../back/css/main.css">
-<script type="text/javascript" src="../../back/js/jquery.min.js"></script>
-<script type="text/javascript" src="../../back/js/showpic.js"></script>
-<script type="text/javascript" src="../../back/js/ajaxfileupload.js"></script>
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/main.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/showpic.js"></script>
+<script type="text/javascript" src="../js/ajaxfileupload.js"></script>
 <script src="../../ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
-$(function(){
-	$.post("../../type/finds",
-		null
-	,function(data){
-		console.log(data);
-		var str="";
-		$.each(data,function(index,item){
-			str+="<option value='"+item.tno+"'>"+item.tname+"</option>";
-		})
-		$("#goodsType").html("").append(str);
-	},"json");
-})
 
 </script>
 </head>

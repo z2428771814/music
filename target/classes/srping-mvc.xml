@@ -21,8 +21,8 @@
     
     <!-- 视图配置器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    	<property name="Prefix" value="/WEB-INF/manager/"></property>
-    	<property name="Suffix" value=".jsp"></property>
+    	<property name="Prefix" value="zlj/manager/"></property>
+    	<property name="Suffix" value=".html"></property>
     </bean>
     
     <!-- 放过静态资源 -->
@@ -31,14 +31,15 @@
     <!-- 启动mvc注解 -->
     <mvc:annotation-driven></mvc:annotation-driven>
     
-   <!-- 这个是添加监听事件 -->
-    <mvc:interceptors>
+    <!-- 这个是添加监听事件 -->
+   <mvc:interceptors>
      	<mvc:interceptor>
-    		<mvc:mapping path="/admin/page/**"/>
+    		<mvc:mapping path="/manager"/>
     		<bean class="com.yc.music.interceptor.BackForwardInterceptor" ></bean>
     	</mvc:interceptor>
     
     </mvc:interceptors>
+   
     
    
   
