@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.music.mapper.IMyMusicInfoMapper">
+
+	<select id="findLike" parameterType="MusicInfo" resultType="MusicInfo">
+		SELECT m.mid, m.mname,s.sgname ,l.lname FROM singerinfo s , musicinfo m , userlist l , usermusic u WHERE 
+		m.status = 1 AND s.sgid = m.sgid AND m.mid = u.mid and u.lid = l.lid
+		
+	</select>
+	
+</mapper>

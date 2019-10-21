@@ -571,7 +571,7 @@ body ::-webkit-scrollbar-thumb {
 		url(../image/icon_sprite.png?max_age=2592000&v=ed195508548a1da6862e0b4a53dcb9f1);
 	background-image: -webkit-image-set(url(img/icon_popup.png?max_age=2592000&v=ed195508548a1da6862e0b4a53dcb9f1&v=ed195508548a1da6862e0b4a53dcb9f1)
 		1x,
-		url(img/icon_popup@2x.png?max_age=2592000&v=ed195508548a1da6862e0b4a53dcb9f1&v=ed195508548a1da6862e0b4a53dcb9f1&v=87af1e59cce6ddfd0c565de49be69282)
+		url(../image/icon_popup@2x.png?max_age=2592000&v=ed195508548a1da6862e0b4a53dcb9f1&v=ed195508548a1da6862e0b4a53dcb9f1&v=87af1e59cce6ddfd0c565de49be69282)
 		2x)
 }
 
@@ -898,7 +898,7 @@ body ::-webkit-scrollbar-thumb {
 		url(../image/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3);
 	background-image: -webkit-image-set(url(img/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3)
 		1x,
-		url(img/icon_sprite@2x.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=ce93ff148404a1f9918b8bc107e7dd6b)
+		url(../image/icon_sprite@2x.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=ce93ff148404a1f9918b8bc107e7dd6b)
 		2x)
 }
 
@@ -937,10 +937,10 @@ body ::-webkit-scrollbar-thumb {
 	width: 15px;
 	height: 15px;
 	background-image:
-		url(img/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3);
+		url(../image/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3);
 	background-image: -webkit-image-set(url(img/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3)
 		1x,
-		url(img/icon_sprite@2x.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=ce93ff148404a1f9918b8bc107e7dd6b)
+		url(../image/icon_sprite@2x.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=ce93ff148404a1f9918b8bc107e7dd6b)
 		2x);
 	background-position: -180px -80px;
 	border-radius: 10px
@@ -1943,7 +1943,7 @@ p.popup_data_detail__tips {
 		url(../image/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3);
 	background-image: -webkit-image-set(url(img/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3)
 		1x,
-		url(img/icon_sprite@2x.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=ce93ff148404a1f9918b8bc107e7dd6b)
+		url(../image/icon_sprite@2x.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=ce93ff148404a1f9918b8bc107e7dd6b)
 		2x)
 }
 
@@ -2388,7 +2388,7 @@ supports (-webkit-appearance:none ){ .
 		url(../image/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3);
 	background-image: -webkit-image-set(url(img/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3)
 		1x,
-		url(img/icon_sprite@2x.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=ce93ff148404a1f9918b8bc107e7dd6b)
+		url(../image/icon_sprite@2x.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=ce93ff148404a1f9918b8bc107e7dd6b)
 		2x);
 	background-repeat: no-repeat
 }
@@ -2494,7 +2494,7 @@ supports (-webkit-appearance:none ){ .
 		url(../image/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3);
 	background-image: -webkit-image-set(url(img/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3)
 		1x,
-		url(img/icon_sprite@2x.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=ce93ff148404a1f9918b8bc107e7dd6b)
+		url(../image/icon_sprite@2x.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=ce93ff148404a1f9918b8bc107e7dd6b)
 		2x)
 }
 
