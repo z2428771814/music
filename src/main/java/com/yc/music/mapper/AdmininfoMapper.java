@@ -1,6 +1,7 @@
 package com.yc.music.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yc.music.bean.AdminInfo;
 
@@ -31,5 +32,12 @@ public interface AdmininfoMapper {
 	 * @return
 	 */
 	public int deleAid(AdminInfo af);
+	
+	/**
+	 * 分页查询
+	 * @param map
+	 * @return
+	 */
+	public List<AdminInfo> paging(Map<String,Integer> map);
 	
 }

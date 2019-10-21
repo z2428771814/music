@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../css/common.css">
-<link rel="stylesheet" href="../css/main.css">
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/showpic.js"></script>
-<script type="text/javascript" src="../js/ajaxfileupload.js"></script>
-<script src="../../ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" href="../zlj/back/css/common.css">
+<link rel="stylesheet" href="../zlj/back/css/main.css">
+<script type="text/javascript" src="../zlj/back/js/jquery.min.js"></script>
+<script type="text/javascript" src="../zlj/back/js/showpic.js"></script>
+<script type="text/javascript" src="../zlj/back/js/ajaxfileupload.js"></script>
+<script src="../../zlj/back/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 
 </script>
@@ -59,7 +59,10 @@
 							</td>
 							<td class="td_right">商品图片：</td>
 							<td>
-								<input type="file" id="pic" name="pic" class="input-text lh30" size="40" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
+								<input type="file" id="pic" name="pic" accept="audio/mpeg" class="input-text lh30" size="40" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
+							</td>
+							<td>
+								<input type="file" id="lc" name="lc" class="input-text lh30" size="40" multiple="multiple" >
 							</td>
 							<td></td>
 							<td></td>
@@ -100,32 +103,15 @@
 CKEDITOR.replace( 'editor1' );
 
 function addGoodsInfo() {
-	var tno = $.trim($("#goodsType").val());
-	var gname = $.trim($("#gname").val());
-	var price = $.trim($("#price").val());
-	var balance = $.trim($("#balance").val());
-	var unit = $.trim($("#unit").val());
-	var qperied = $.trim($("#qperied").val());
-	var weight = $.trim($("#weight").val());
-	var intro = $.trim($("#intro").val());
-	var descr = CKEDITOR.instances.editor1.getData();
 	
+	var pic=["music","lc"];
 	$.ajaxFileUpload({
-		url:'../../goods/addGood',
+		url:'../upload/addGood',
 		secureuri: false,
-		fileElementId:"pic",
+		fileElementId:"lc",
 		dataType:"json",
-		data:{tno:tno, gname:gname,price:price,balance:balance,unit:unit,qperied:qperied,weight:weight,intro:intro,descr:descr},
 		success:function(data, stuts) {
-			data = parseInt($.trim(data));
-			if (data == 1) {
-				$("#addGoodsForm")[0].reset();
-				$("#showPics").html("");
-				CKEDITOR.instances.editor1.setData("");
-				alert("商品信息添加成功...");
-			} else {
-				alert("商品信息添加失败...");
-			}
+			console.log("成功");
 		},
 		error:function(data, status, e) {
 			alert("商品信息添加失败，请稍后重试...\n" + e);

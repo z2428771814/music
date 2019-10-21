@@ -1,6 +1,7 @@
 package com.yc.music.service.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,12 @@ public class AdminServiceImpl  implements IAdminService {
 	public int deleAid(AdminInfo af) {
 		
 		return mapper.deleAid(af);
+	}
+
+
+	@Override
+	public List<AdminInfo> paging(Map<String, Integer> map) {
+		return mapper.paging(map);
 	}
 
 }

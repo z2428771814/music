@@ -3,7 +3,7 @@ $(function(){
 });
 
 function findByAll() {
-	$.get("../../../admin/findAll", null, function(data){
+	$.get("../admin/findAll", null, function(data){
 		var str = "";
 		$.each(data, function(index, item) {
 			str += "<tr><td>"+item.aid+"</td><td>"+item.aname+"</td><td>"+item.email+"</td><td><a href='javascript:resetPwd("+item.aid+")'>[阵亡]</a></td></tr>";
@@ -34,7 +34,7 @@ function addNewsTypeInfo(){
 		return;
 	}
 	
-	$.post("../../../admin/add", {aname:aname, pwd:pwd, email:email}, function(data){
+	$.post("../admin/add", {aname:aname, pwd:pwd, email:email}, function(data){
 		data = parseInt($.trim(data));
 		if (data > 0) {
 			alert("恭喜元帅旗下新增一名都统");
@@ -47,7 +47,7 @@ function addNewsTypeInfo(){
 }
 
 function resetPwd(aid) {
-	$.post("../../../admin/deleAid", {aid:aid}, function(data){
+	$.post("../admin/deleAid", {aid:aid}, function(data){
 		data = parseInt($.trim(data));
 		if (data > 0) {
 			alert("看来这位都统承受不了压力，已经离去了。。。。");

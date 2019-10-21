@@ -8,21 +8,20 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-public class BackForwardInterceptor implements HandlerInterceptor{
+/**
+ * 后台页面跳转拦截
+ * @author lenovo1
+ *
+ */
+public class FrontForwardInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-	
-		if( request.getSession().getAttribute("currentLoginAdmin") == null ){
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out=response.getWriter();
-			out.print("<script>alert('请先登录。。。');location.href='zlj/index.html'</script>");
-			out.flush();
-			return false;
-		}
-		
-		request.getRequestDispatcher("WEB-INF/manager/index.html" ).forward(request, response);
+		String path=request.getServletPath();
+		path=path.substring( path.lastIndexOf("/")+1 );
+		System.out.println( "/WEB-INF/manager"+path );
+		request.getRequestDispatcher("/WEB-INF/manager/"+path ).forward(request, response);
 		return false;
 	}
 
@@ -39,5 +38,5 @@ public class BackForwardInterceptor implements HandlerInterceptor{
 		// TODO Auto-generated method stub
 		HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
 	}
-
+	
 }

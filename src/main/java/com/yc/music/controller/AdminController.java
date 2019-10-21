@@ -1,7 +1,10 @@
 package com.yc.music.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,7 @@ import com.yc.music.service.IAdminService;
 
 
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 public class AdminController {
 	
@@ -25,7 +28,6 @@ public class AdminController {
 	private IAdminService iadminService;
 	
 	@RequestMapping("/login")
-	@ResponseBody
 	public int login(HttpSession session,AdminInfo af){
 		
 		AdminInfo adminInfo=iadminService.login(af);
@@ -50,7 +52,6 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping("/obtain")
-	@ResponseBody
 	public AdminInfo obtain(HttpSession session){	
 		
 		return (AdminInfo) session.getAttribute("currentLoginAdmin");
@@ -63,21 +64,38 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping("/add")
-	@ResponseBody
 	public int add(AdminInfo af){
 		return iadminService.add(af);
 	}
 	
 	@RequestMapping("/findAll")
-	@ResponseBody
 	public List<AdminInfo> findAll(){
 		return iadminService.findAll();
 	}
 	
 	@RequestMapping("/deleAid")
-	@ResponseBody
 	public int deleAid(AdminInfo af){
 		return iadminService.deleAid(af);
+	}
+	
+	//分页查询
+	@RequestMapping("/paging")
+	public Map<String, Object> paging(Integer pageNo,Integer pageSize){
+		Map<String, Object> pmap=new HashMap<String, Object>();
+		
+		Map<String,Integer> map=new HashMap<String, Integer>();
+		map.put("pageNo", (pageNo-1)*pageSize);
+		map.put("pageSize", pageSize);
+		//获取分页查询的内容
+		pmap.put("paging", iadminService.paging(map));
+		//计算总页数
+		pmap.put("total", iadminService.findAll().size());
+		
+		
+		
+		return pmap;
+		
+	
 	}
 	
 }

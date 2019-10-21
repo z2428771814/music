@@ -37,6 +37,13 @@
     		<mvc:mapping path="/manager"/>
     		<bean class="com.yc.music.interceptor.BackForwardInterceptor" ></bean>
     	</mvc:interceptor>
+    	
+    		
+    	<mvc:interceptor>
+    		<mvc:mapping path="/front/**"/>
+    		<bean class="com.yc.music.interceptor.FrontForwardInterceptor" ></bean>
+    	</mvc:interceptor>
+    	
     
     </mvc:interceptors>
    

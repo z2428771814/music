@@ -1,6 +1,7 @@
 package com.yc.music.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yc.music.bean.AdminInfo;
 
@@ -16,5 +17,8 @@ public interface IAdminService {
 	
 	//都统阵亡
 	public int deleAid(AdminInfo af);
+	
+	//分页查询
+	public List<AdminInfo> paging(Map<String,Integer> map);
 	
 }

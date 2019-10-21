@@ -19,4 +19,8 @@
 		delete from admininfo where aid=#{aid}
 	</delete>
 	
+	<select id="paging" parameterType="map" resultType="AdminInfo">
+			select aid,aname,pwd,pic,email,status from admininfo   order by status desc  ,aid  limit #{pageNo},#{pageSize}
+	</select>
+ 
 </mapper>

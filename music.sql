@@ -107,7 +107,7 @@ CREATE TABLE `singerinfo` (
   `addr` varchar(255) DEFAULT NULL,			--歌手所在的地方
   `sex` varchar(255) DEFAULT NULL,			--性别
   `genre` varchar(255) DEFAULT NULL,		--跟手区风		比如：摇滚
-  `status` int(11) DEFAULT NULL,			--状态	
+  `status` int(11) DEFAULT NULL,				
   `cid` int(255) DEFAULT NULL,				--组合id
   `num` int(11) DEFAULT NULL,				--歌手关注
   PRIMARY KEY (`sgid`)
@@ -130,8 +130,12 @@ CREATE TABLE `musicinfo` (
   `atid` int(11) DEFAULT NULL,					--应用场景id
   `mname` varchar(255) DEFAULT NULL,			--音乐名字
   `musciaddr` varchar(255) DEFAULT NULL,		--音乐播发地址
+  `pices` varchar(200) DEFAULT NULL,			--音乐图片
   `Lyricaddr` varchar(255) DEFAULT NULL,		--音乐歌词地址
   `judgestauts` int(11) DEFAULT NULL,			--播放的次数
+  `status` int(11) DEFAULT NULL,				--歌曲状态（用于我喜欢）
+ 'rgdate' datetime DEFAULT NULL,			--歌曲发行时间
+'by2'	varchar  DEFAULT NULL,   			--歌曲公司
   PRIMARY KEY (`mid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -162,7 +166,7 @@ DROP TABLE IF EXISTS `usermusic`;
 CREATE TABLE `usermusic` (				--用户歌单里面的歌曲表
   `umid` int(11) NOT NULL AUTO_INCREMENT,	--歌曲id
   `lid` int(255) DEFAULT NULL,				--歌单id
-  `mid` int(11) DEFAULT NULL,				--歌曲id
+  `mid` int(11) DEFAULT NULL,				--音乐id
   PRIMARY KEY (`umid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
