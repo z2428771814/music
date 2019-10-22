@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.music.mapper.IMusicInfoMapper">
+	<!-- 查询所有地区  -->
+	<select id="findAddr" resultType="SingerInfo">
+		SELECT sgid, addr from singerinfo
+	</select>
+	
+	<!-- 查询最新歌曲 -->
+	<select id="newSong" resultType="MusicInfo">
+		SELECT mid, sgname, mname, pices, musicaddr from singerinfo, musicinfo where singerinfo.sgid=musicinfo.sgid  ORDER BY mid DESC LIMIT 9
+	</select>
+</mapper>
