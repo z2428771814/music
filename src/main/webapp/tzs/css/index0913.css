@@ -1305,3 +1305,8 @@ supports (object-fit:cover ){ .
 	width: 20%;
 	padding-bottom: 25px
 }
+
+#img_dan {
+	width: 224px;
+	height: 224px;
+}

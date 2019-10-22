@@ -1,35 +1,4 @@
 ﻿
-<!--
-                                                           .                     
-                                     .;$$                     
-                        ....:;$$$$$$$   $                     
-                    ..;;;$$$            $:..                  
-                 .:$$$$$$               $$$$$:.               
-               .;$$$$$$$3             $$$$$$$$$;.             
-             .;$$$$$$$$$$      $$$$$$$;$$$$$$$$$$;.           
-            ;$$$$$$$$$$$$$    $$;$$$$$$$$$$$$$$$$$$;          
-           ;$$$$$$$$$$$$$$$$    $$$$$$$$$$$$$$$$$$$$$         
-          $$$$$$$$$$$$$$$$$$$    $$$$$$$$$$$$$$$$$$$$$        
-         :$$$$$$$$$$$$$$$$$$$$    $$$$$$$$$$$$$$$$$$$$;       
-        .$$$$$$$$$$$$$$$$$$$$$$$   $$$$$$$$$$$$$$$$$$$$.      
-        :$$$$$$$$$$$$$$$$$$$$$$$$   $$$$$$$$$$$$$$$$$$$:      
-        ;$$$$$$$$$$$$$$$$$$$$$$$$$$  $$$$$$$$$$$$$$$$$$;      
-        ;$$$$$$$$$$$$$$$$$$$$$$$$$$$   $$$$$$$$$$$$$$$$;      
-        :$$$$$$$$$$$$$$$$$$             $$$$$$$$$$$$$$$:      
-        .$$$$$$$$$$$$$$$                 $$$$$$$$$$$$$$.      
-         ;$$$$$$$$$$$$$                   $$$$$$$$$$$$;       
-          $$$$$$$$$$$$                     $$$$$$$$$$$        
-           $$$$$$$$$$                      $$$$$$$$$$         
-            ;$$$$$$$$                     $$$$$$$$$;          
-             .$$$$$$$$                   $$$$$$$$$.           
-               .$$$$$$$$               $$$$$$$$$:             
-                 .;$$$$$$$$          $$$$$$$$;.               
-                    .:$$$$$$$$$$$$$$$$$$$$:.                  
-                        ...:;;;;;;;;:...                                     
-                                                
-         交互:小攀攀 && 视觉:页子 && 重构:猫砂 && 前端:玥玥
-                         QQ音乐团队倾情出品
--->
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -122,15 +91,9 @@
 
                
                 <!-- 未登录 -->
-                <span class="mod_top_login">
-		    <a class="top_login__link js_logined" href="//y.qq.com/portal/profile.html#stat=y_new.top.user_pic" onclick="setStatCookie&&setStatCookie();" style="display:none;">
-                        <img src="//y.gtimg.cn/mediastyle/global/img/person_300.png?max_age=2592000" class="top_login__cover" alt="" />
-                    </a>
-                    <a class="top_login__link js_login" data-stat="y_new.top.login" href="javascript:;">
-                        登录
-                    </a>
+                <span class="mod_top_login" id="login_TOp">
+		    
 
-                    <a class="login__link header__link js_login" data-stat="y_new.top.login" href="javascript:;">登录</a>
                     <a class="mod_btn_green top_login__btn_vip js_openvip" data-aid="music.pc.20316.newyqqtop" data-stat="music.20316.btnclick.pc" href="javascript:;">开通绿钻豪华版</a>
 		    <a class="mod_btn top_login__btn_vip js_openmusic" data-aid="music.pc.20317.newyqqtop" data-stat="music.20317.btnclick.pc" href="javascript:;">开通付费包</a>
                 </span>
@@ -149,9 +112,9 @@
                 <h2 class="index__tit"><i class="icon_txt">歌单推荐</i></h2>
             </div>
             <!-- 切换 -->
-            <div class="mod_index_tab" data-stat="y_new.index.playlist">
-		<a href="javascript:;" class="index_tab__item index_tab__item--current js_tag" data-index="0" data-type="recomPlaylist" data-id="1">为你推荐</a>
-		
+            <div class="mod_index_tab" data-stat="y_new.index.playlist" id="type_list">
+		<a href="javascript:;" class="index_tab__item index_tab__item--current js_tag" data-index="0" data-type="recomPlaylist" data-id="1">最新</a>
+		<!-- 
 		    <a href="javascript:;" class="index_tab__item js_tag" data-type="playlist" data-id="27">睡前</a>
 		
 		    <a href="javascript:;" class="index_tab__item js_tag" data-type="playlist" data-id="64">KTV热歌</a>
@@ -161,12 +124,12 @@
 		    <a href="javascript:;" class="index_tab__item js_tag" data-type="playlist" data-id="3317">官方歌单</a>
 		
 		    <a href="javascript:;" class="index_tab__item js_tag" data-type="playlist" data-id="71">情歌</a>
-		
+		 -->
             </div>
 
             <div class="mod_playlist mod_slide">
-                <ul class="playlist__list slide__list" style="left:0%;">
-		
+                <ul class="playlist__list slide__list" style="left:0%;" id="list_dan">
+		<!--  
                     <li class="playlist__item slide__item" onmouseover="this.className=(this.className+' playlist__item--hover')" onmouseout="this.className=this.className.replace(/ playlist__item--hover/, '')" data-disstid="7252602321">
                         <div class="playlist__item_box">
                             <div class="playlist__cover mod_cover">
@@ -256,7 +219,7 @@
                             </div>
                         </div>
                     </li>
-
+-->
                 </ul>
             </div>
             <div class="mod_slide_switch js_switch"  data-stat="y_new.index.playlist.pager">
@@ -282,10 +245,10 @@
             </div>
             <a href="javascript:;" class="mod_btn js_all_play"><i class="mod_btn__icon_play js_all_play" data-stat="y_new.index.new_song.playall"></i>播放全部</a>
             <!-- 切换 -->
-            <div class="mod_index_tab"  data-stat="y_new.index.new_song">
+            <div class="mod_index_tab"  data-stat="y_new.index.new_song" id="mod_index_tab">
 		
 		    <a href="javascript:;" class="index_tab__item index_tab__item--current js_tag" data-type="new_song" data-id="5">最新</a>
-		
+		<!--  
 		    <a href="javascript:;" class="index_tab__item js_tag" data-type="new_song" data-id="1">内地</a>
 		
 		    <a href="javascript:;" class="index_tab__item js_tag" data-type="new_song" data-id="6">港台</a>
@@ -295,13 +258,13 @@
 		    <a href="javascript:;" class="index_tab__item js_tag" data-type="new_song" data-id="4">韩国</a>
 		
 		    <a href="javascript:;" class="index_tab__item js_tag" data-type="new_song" data-id="3">日本</a>
-		
+		-->
             </div>
 
             <div class="mod_songlist mod_slide">
                 <div class="slide__list js_list" style="left:0%;">
 		<ul class="songlist__list">
-		
+		<!-- 
                         <li class="songlist__item">
                             <div class="songlist__item_box">
                                 <a title="风华" class="album_name songlist__link mod_cover">
@@ -490,7 +453,7 @@
                                 <div class="songlist__time c_tx_thin"></div>
                             </div>
                         </li>
-
+ -->
 		</ul>
                 </div>
             </div>
@@ -1136,6 +1099,8 @@
         </div>
     </div>
 </div>
+<script src="tzs/js/jquery-3.4.1.min.js"></script>
+<script src="tzs/js/basic.js"></script>
 
 </body>
 </html>
