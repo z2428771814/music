@@ -5,5 +5,35 @@
 <mapper namespace="com.yc.music.mapper.ITypeChangeMapper">
 	
 	
+	<insert id="addApplicationType" parameterType="ApplicationTypeInfo">
+		insert into applicationtype values(0,#{atname},null,null,null);
+	</insert>
+	
+	<select id="findApplicationType" resultType="ApplicationTypeInfo">
+		select atid,atname,by1,by2,by3 from applicationtype
+	</select>
+	
+	<delete id="deleteApplicationType" parameterType="ApplicationTypeInfo">
+		delete from applicationtype where atid=#{atid}
+	</delete>
+	
+	<delete id="deleteSongTypeInfo" parameterType="ApplicationTypeInfo">
+		delete from songtype where atid=#{atid}
+	</delete>
+	
+	
+	
+	<insert id="addSongType" parameterType="map">
+		insert into songtype values(0,#{atid},#{stype},null,null,null)
+	</insert>
+	
+	<select id="findByAtidSongType" parameterType="int" resultType="SongTypeInfo">
+		select sid,atid,stype,by1,by2,by3 from songtype where atid=#{_parameter}
+	</select>
+	
+	<delete id="deleteSongType" parameterType="int">
+		delete from songtype where sid=#{_parameter}
+	</delete>
+	
  
 </mapper>
