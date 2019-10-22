@@ -2,7 +2,7 @@ package com.yc.music.bean;
 
 import java.io.Serializable;
 
-public class UserList implements Serializable {
+public class UserListInfo implements Serializable {
 	private int lid;
 	private int uid;
 	private String lname;
@@ -54,7 +54,7 @@ public class UserList implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserList other = (UserList) obj;
+		UserListInfo other = (UserListInfo) obj;
 		if (lid != other.lid)
 			return false;
 		if (lname == null) {
@@ -67,14 +67,14 @@ public class UserList implements Serializable {
 		return true;
 	}
 
-	public UserList(int lid, int uid, String lname) {
+	public UserListInfo(int lid, int uid, String lname) {
 		super();
 		this.lid = lid;
 		this.uid = uid;
 		this.lname = lname;
 	}
 
-	public UserList() {
+	public UserListInfo() {
 		super();
 	}
 	

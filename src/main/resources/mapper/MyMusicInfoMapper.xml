@@ -7,7 +7,6 @@
 	<select id="findLike" parameterType="MusicInfo" resultType="MusicInfo">
 		SELECT m.mid, m.mname,s.sgname ,l.lname FROM singerinfo s , musicinfo m , userlist l , usermusic u WHERE 
 		m.status = 1 AND s.sgid = m.sgid AND m.mid = u.mid and u.lid = l.lid
-		
 	</select>
 	
 </mapper>
