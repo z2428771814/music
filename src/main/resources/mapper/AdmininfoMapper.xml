@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yc.music.mapper.AdmininfoMapper">
+<mapper namespace="com.yc.music.mapper.IAdmininfoMapper">
 	<select id="login" parameterType="AdminInfo" resultType="AdminInfo">
 		select aid,aname,pwd,pic,email,status from admininfo where (aname=#{aname} or email=#{aname}) and pwd=#{pwd}
 	</select>

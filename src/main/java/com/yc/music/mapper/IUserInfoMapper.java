@@ -7,7 +7,7 @@ import com.yc.music.bean.UserInfo;
  * @author lenovo1
  *
  */
-public interface UserInfoMapper {
+public interface IUserInfoMapper {
 	/**
 	 * 用户登录
 	 * @param userInfo	用户对象
@@ -17,8 +17,8 @@ public interface UserInfoMapper {
 	
 	/**
 	 * 注册用户
-	 * @param userInf
+	 * @param userInfo
 	 * @return
 	 */
-	public int add(UserInfo userInf);
+	public int add(UserInfo userInfo);
 }

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yc.music.bean.AdminInfo;
-import com.yc.music.mapper.AdmininfoMapper;
+import com.yc.music.mapper.IAdmininfoMapper;
 import com.yc.music.service.IAdminService;
 import com.yc.music.util.StringUtil;
 
@@ -18,7 +18,7 @@ import com.yc.music.util.StringUtil;
 public class AdminServiceImpl  implements IAdminService {
 	
 	@Autowired
-	private AdmininfoMapper mapper;
+	private IAdmininfoMapper mapper;
 
 	
 	public AdminInfo login(AdminInfo af) {

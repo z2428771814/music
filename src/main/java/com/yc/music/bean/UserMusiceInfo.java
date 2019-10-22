@@ -2,62 +2,84 @@ package com.yc.music.bean;
 
 import java.io.Serializable;
 
-public class SongTypeInfo implements Serializable{
+public class UserMusiceInfo implements Serializable {
+
+	private static final long serialVersionUID = 4460148285442048929L;
+
+	private int umid;
+	private int lid;
+	private int mid;
+	private String by1;
+	private String by2;
+	private String by3;
 	
-	int sid;
-	int atid;
-	String stype;
-	String by1;
-	String by2;
-	String by3;
-	public int getSid() {
-		return sid;
+	@Override
+	public String toString() {
+		return "UserMusiceInfo [umid=" + umid + ", lid=" + lid + ", mid=" + mid + ", by1=" + by1 + ", by2=" + by2
+				+ ", by3=" + by3 + "]";
 	}
-	public void setSid(int sid) {
-		this.sid = sid;
+
+	public int getUmid() {
+		return umid;
 	}
-	public int getAtid() {
-		return atid;
+
+	public void setUmid(int umid) {
+		this.umid = umid;
 	}
-	public void setAtid(int atid) {
-		this.atid = atid;
+
+	public int getLid() {
+		return lid;
 	}
-	public String getStype() {
-		return stype;
+
+	public void setLid(int lid) {
+		this.lid = lid;
 	}
-	public void setStype(String stype) {
-		this.stype = stype;
+
+	public int getMid() {
+		return mid;
 	}
+
+	public void setMid(int mid) {
+		this.mid = mid;
+	}
+
 	public String getBy1() {
 		return by1;
 	}
+
 	public void setBy1(String by1) {
 		this.by1 = by1;
 	}
+
 	public String getBy2() {
 		return by2;
 	}
+
 	public void setBy2(String by2) {
 		this.by2 = by2;
 	}
+
 	public String getBy3() {
 		return by3;
 	}
+
 	public void setBy3(String by3) {
 		this.by3 = by3;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + atid;
 		result = prime * result + ((by1 == null) ? 0 : by1.hashCode());
 		result = prime * result + ((by2 == null) ? 0 : by2.hashCode());
 		result = prime * result + ((by3 == null) ? 0 : by3.hashCode());
-		result = prime * result + sid;
-		result = prime * result + ((stype == null) ? 0 : stype.hashCode());
+		result = prime * result + lid;
+		result = prime * result + mid;
+		result = prime * result + umid;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -66,9 +88,7 @@ public class SongTypeInfo implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SongTypeInfo other = (SongTypeInfo) obj;
-		if (atid != other.atid)
-			return false;
+		UserMusiceInfo other = (UserMusiceInfo) obj;
 		if (by1 == null) {
 			if (other.by1 != null)
 				return false;
@@ -84,33 +104,29 @@ public class SongTypeInfo implements Serializable{
 				return false;
 		} else if (!by3.equals(other.by3))
 			return false;
-		if (sid != other.sid)
+		if (lid != other.lid)
 			return false;
-		if (stype == null) {
-			if (other.stype != null)
-				return false;
-		} else if (!stype.equals(other.stype))
+		if (mid != other.mid)
+			return false;
+		if (umid != other.umid)
 			return false;
 		return true;
 	}
-	@Override
-	public String toString() {
-		return "SongTypeInfo [sid=" + sid + ", atid=" + atid + ", stype=" + stype + ", by1=" + by1 + ", by2=" + by2
-				+ ", by3=" + by3 + "]";
-	}
-	public SongTypeInfo(int sid, int atid, String stype, String by1, String by2, String by3) {
+
+	public UserMusiceInfo(int umid, int lid, int mid, String by1, String by2, String by3) {
 		super();
-		this.sid = sid;
-		this.atid = atid;
-		this.stype = stype;
+		this.umid = umid;
+		this.lid = lid;
+		this.mid = mid;
 		this.by1 = by1;
 		this.by2 = by2;
 		this.by3 = by3;
 	}
-	public SongTypeInfo() {
+
+	public UserMusiceInfo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+	
 	
 	
 }

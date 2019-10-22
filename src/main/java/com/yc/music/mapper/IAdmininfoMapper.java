@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.yc.music.bean.AdminInfo;
 
-public interface AdmininfoMapper {
+public interface IAdmininfoMapper {
 	/**
 	 * 管理员登陆
 	 * @param af

@@ -96,11 +96,12 @@ public class UserInfoController {
 		if( obj == null ){//说明验证码已经过期
 			return -2;
 		}
-		System.out.println( "我们的验证码为"+obj );
+		
 		String code=(String)obj;
 		if( !code.equals( mf.getRealName() ) ){
 			return -1;	//说明验证码错误
 		}
+		System.out.println( "我们的验证码为"+obj );
 		return userInfoService.add(mf);
 	}
 	

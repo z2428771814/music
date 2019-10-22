@@ -1,32 +1,22 @@
 package com.yc.music.bean;
 
-import java.io.Serializable;
-
-public class SongTypeInfo implements Serializable{
-	
-	int sid;
-	int atid;
-	String stype;
-	String by1;
-	String by2;
-	String by3;
-	public int getSid() {
-		return sid;
-	}
-	public void setSid(int sid) {
-		this.sid = sid;
-	}
+public class ApplicationTypeInfo {
+	private int atid;
+	private String atname;
+	private String by1;
+	private String by2;
+	private String by3;
 	public int getAtid() {
 		return atid;
 	}
 	public void setAtid(int atid) {
 		this.atid = atid;
 	}
-	public String getStype() {
-		return stype;
+	public String getAtname() {
+		return atname;
 	}
-	public void setStype(String stype) {
-		this.stype = stype;
+	public void setAtname(String atname) {
+		this.atname = atname;
 	}
 	public String getBy1() {
 		return by1;
@@ -51,11 +41,10 @@ public class SongTypeInfo implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + atid;
+		result = prime * result + ((atname == null) ? 0 : atname.hashCode());
 		result = prime * result + ((by1 == null) ? 0 : by1.hashCode());
 		result = prime * result + ((by2 == null) ? 0 : by2.hashCode());
 		result = prime * result + ((by3 == null) ? 0 : by3.hashCode());
-		result = prime * result + sid;
-		result = prime * result + ((stype == null) ? 0 : stype.hashCode());
 		return result;
 	}
 	@Override
@@ -66,8 +55,13 @@ public class SongTypeInfo implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SongTypeInfo other = (SongTypeInfo) obj;
+		ApplicationTypeInfo other = (ApplicationTypeInfo) obj;
 		if (atid != other.atid)
+			return false;
+		if (atname == null) {
+			if (other.atname != null)
+				return false;
+		} else if (!atname.equals(other.atname))
 			return false;
 		if (by1 == null) {
 			if (other.by1 != null)
@@ -84,30 +78,22 @@ public class SongTypeInfo implements Serializable{
 				return false;
 		} else if (!by3.equals(other.by3))
 			return false;
-		if (sid != other.sid)
-			return false;
-		if (stype == null) {
-			if (other.stype != null)
-				return false;
-		} else if (!stype.equals(other.stype))
-			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "SongTypeInfo [sid=" + sid + ", atid=" + atid + ", stype=" + stype + ", by1=" + by1 + ", by2=" + by2
-				+ ", by3=" + by3 + "]";
+		return "ApplicationTypeInfo [atid=" + atid + ", atname=" + atname + ", by1=" + by1 + ", by2=" + by2 + ", by3="
+				+ by3 + "]";
 	}
-	public SongTypeInfo(int sid, int atid, String stype, String by1, String by2, String by3) {
+	public ApplicationTypeInfo(int atid, String atname, String by1, String by2, String by3) {
 		super();
-		this.sid = sid;
 		this.atid = atid;
-		this.stype = stype;
+		this.atname = atname;
 		this.by1 = by1;
 		this.by2 = by2;
 		this.by3 = by3;
 	}
-	public SongTypeInfo() {
+	public ApplicationTypeInfo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

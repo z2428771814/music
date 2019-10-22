@@ -14,6 +14,8 @@ public class AdminInfo implements Serializable{
 	private String status;
 	
 	
+	
+	
 	public int getAid() {
 		return aid;
 	}
