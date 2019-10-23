@@ -12,4 +12,7 @@ public interface IMyMusicInfoService {
 	
 	//我的音乐  查询我喜欢
 	public List<MusicInfo> findLike();
+	
+	//根据古曲id删除歌曲
+	public int deleteMusic(Integer mid);
 }

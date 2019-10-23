@@ -9,4 +9,7 @@
 		m.status = 1 AND s.sgid = m.sgid AND m.mid = u.mid and u.lid = l.lid
 	</select>
 	
+	<delete id="deleteMusic" parameterType="int"  >
+		delete from musicinfo where mid=#{mid}
+	</delete>
 </mapper>

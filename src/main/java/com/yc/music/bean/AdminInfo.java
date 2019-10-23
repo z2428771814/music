@@ -12,6 +12,10 @@ public class AdminInfo implements Serializable{
 	private String pic;
 	private String email;
 	private String status;
+	
+	
+	
+	
 	public int getAid() {
 		return aid;
 	}

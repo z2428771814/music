@@ -23,5 +23,15 @@ public class MyMusicInfoServiceImpl implements IMyMusicInfoService {
 	public List<MusicInfo> findLike() {
 		return mapper.findLike();
 	}
+	
+	@Override
+	//根据歌曲id删除歌曲
+	public int deleteMusic(Integer mid) {
+		return mapper.deleteMusic(mid);
+	}
+	
+	
+	
+	
 
 }

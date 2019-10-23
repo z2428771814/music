@@ -13,4 +13,7 @@ public interface IMyMusicInfoMapper {
 	//  查询我喜欢
 	public List<MusicInfo> findLike();
 	
+	// 根据歌曲id删除歌曲
+	public int deleteMusic(Integer mid);
+	
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yc.music.bean.MusicInfo;
 import com.yc.music.service.IMyMusicInfoService;
+import com.yc.music.util.StringUtil;
 
 /**
  * 我的音乐
@@ -28,6 +29,14 @@ public class MyMusicInfoController {
 	@RequestMapping("/findLike")
 	public List<MusicInfo> findLike(){
 		return service.findLike();
-		
+	}
+	
+	/**
+	 * 根据歌曲id删除歌曲
+	 * @return
+	 */
+	@RequestMapping("/deleteMusic")
+	public int deleteMusic(Integer mid){
+		return service.deleteMusic(mid);
 	}
 }

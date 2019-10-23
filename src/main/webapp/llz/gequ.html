@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="css/layout_0412.css">
 <link rel="stylesheet" href="css/profile_61ea2fe1.css">
 <link rel="stylesheet" href="css/popup_login.css">
+
 <style type="text/css">
 .emojicon-m {
 	min-height: 1em !important;
@@ -211,16 +212,9 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 			<div class="header__opt">
 
 				<!-- 未登录 -->
-				<span class="mod_top_login"> <a
-					class="top_login__link js_logined"
-					href="https://y.qq.com/portal/profile.html#stat=y_new.top.user_pic"
-					onclick="setStatCookie&amp;&amp;setStatCookie();" style=""><img
-						src="image/touxiang.jpg"
-						onerror="this.src=&#39;//y.gtimg.cn/mediastyle/global/img/person_300.png?max_age=2592000&#39;;this.onerror=null;"
-						class="top_login__cover js_user_img"><img
-						src="image/login_qq.png" class="top_login__icon"></a> <a
-					class="top_login__link js_login" data-stat="y_new.top.login"
-					href="javascript:;" style="display: none;"> 登录 </a> <a
+				<span class="mod_top_login" id="login_TOp"> 
+					<a class="top_login__link js_login" data-stat="y_new.top.login"
+					href="../login.html;" style="display:none;"> 登录 </a> <a
 					class="login__link header__link js_login"
 					data-stat="y_new.top.login" href="javascript:;"
 					style="display: none;">登录</a> <a
@@ -251,7 +245,7 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 								<input type="hidden" name="">
 								<a
 									href="https://y.qq.com/portal/profile.html#stat=y_new.top.pop.user_nickname"
-									onclick="setStatCookie&amp;&amp;setStatCookie();" class="">沐染</a>
+									onclick="setStatCookie&amp;&amp;setStatCookie();" class="">${loginUser.uname}</a>
 							</div>
 							<div class="popup_user_data__lv">
 								<a href="https://y.qq.com/portal/vipportal/index.html"
@@ -327,8 +321,8 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 					alt="沐染" class="profile__cover" id="profileHead">
 			</div>
 			<h1 class="profile__tit">
-				<input type="hidden" name="uid" id="uid" value="1">
-				<span class="profile__name">沐染</span><a
+				<input type="hidden" name="uid" id="uid" value="">
+				<span class="profile__name"></span><a
 					href="https://y.qq.com/portal/vipportal/index.html"
 					rel="noopener nofollow" target="_blank"><img
 					src="image/svip_g@2x.png" class="lv_icon"></a>
@@ -397,15 +391,28 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 							<i class="mod_btn_green__icon_play"></i>播放全部
 						</a> 
 						
-						<a href="javascript:showAddrDiv()" id="" class="mod_btn js_all_fav" data-stat="y_new.profile.like.song.addall">
+						<a href="javascript:void(0);" onclick="addrShow()" id="" class="mod_btn js_all_fav" data-stat="y_new.profile.like.song.addall">
 							<i class="mod_btn__icon_add"></i>添加到
 						</a> 
+						
+						<div id="div_add" style="display: none">
+						<img  src="image/close.png" title="关闭" onclick="hiddenDiv()"/>
+							<form id="div_add_form">
+								<ul>
+									<li>
+										<label for="addr_name">收货人:</label>
+										收货人:<input id="addr_name" name="name" type="text" placeholder="请输入收货人的姓名..."/>
+									</li>
+
+								</ul>
+							</form>
+						</div>
 						
 						<a href="javascript:;" class="mod_btn js_all_down" data-stat="y_new.profile.like.song.downloadall">
 							<i class="mod_btn__icon_down"></i>下载
 						</a> 
 						
-						<a href="javascript:;" class="mod_btn js_batch" data-stat="y_new.profile.like.song.batch">
+						<a href="javascript:viod(0);" onclick="showCheak()" class="mod_btn js_batch" data-stat="y_new.profile.like.song.batch">
 							<i class="mod_btn__icon_batch"></i>批量操作
 						</a>
 						
@@ -726,6 +733,7 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 })(); 
 </script> -->
 	<script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="js/basic2.js"></script>
 	<script type="text/javascript">
 	//进网页就加载
 	$(function(){
@@ -739,7 +747,7 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 				 	str += '<li mid="'+ item.mid +'" ix="'+(item.mid - 1)+'">';
 					str += '<div class="songlist__item" onmouseover="this.className=(this.className+&#39; songlist__item--hover&#39;)"';
 					str += 'onmouseout="this.className=this.className.replace(/ songlist__item--hover/, &#39;&#39;)">';
-					str += '<div class="songlist__edit songlist__edit--check sprite"><input type="checkbox" class="songlist__checkbox"></div>';
+					str += '<div class="songlist__edit songlist__edit--check sprite"  ><input type="checkbox" class="songlist__checkbox"></div>';
 					str += '<div class="songlist__songname">';
 					str += '<a href="" class="songlist__icon songlist__icon_mv sprite" rel="noopener" target="_blank" title="MV">';
 					str += '<span class="icon_txt">MV</span></a><span class="songlist__songname_txt">';
@@ -766,12 +774,27 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 		},"json")
 	})
 	
-	//删除我喜欢的歌曲
+	var uid = $("#uid").val();
+	//更具歌曲id删除的歌曲
 	function deleteMusic(mid){
-		
+		$.post("../myMusic/deleteMusic",{mid:mid},function(data){
+			if( data = 1 ){
+				alert("歌曲删除成功");
+				window.location.reload();  //刷新当前页
+			}else{
+				alert("歌曲删除失败")
+			}
+		})
 	}
 	
+	function addrShow(){
+		$("#div_add").css("display","block");
+	}
 	
+	function showCheak(){
+		alert(1)
+		$(".songlist__edit").css("display","block");
+	}
 </script>
 
 	<a href="#topAnchor" class="btn_bottom_top sprite_before js_btn_top"><span
