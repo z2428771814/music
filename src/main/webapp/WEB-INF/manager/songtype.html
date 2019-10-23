@@ -20,13 +20,58 @@ $(function(){
 
 function add(){
 	var atid = $("#applicationtype").val();
-	$.post("",{
-		
+	var stype =$.trim( $("#atname").val() );
+	
+	if( stype == "" ){
+		alert("请输入类型");
+	}
+	
+	var option =$.trim( $("#applicationtype option:selected").text() );
+	
+	$.post("../TypeChange/addSongType",{
+		atid:atid,
+		stype:stype
 	},function(data){
-		
-	});
+		if( data > 0 ){
+			findby();
+			alert("添加成功");
+			
+		}else if( data == -1 ){
+			alert("已经达到最大值，请先删除没有的类型在操作");
+		}else{
+			alert("添加失败");
+		}
+	},"json");
 }
 
+function findby(){
+	var atid = $("#applicationtype").val();
+	var option =$.trim( $("#applicationtype option:selected").text() );
+	$.post("../TypeChange/findByAtidSongType",{
+		atid:atid
+	},function(data){
+		var str = "";
+		$.each(data,function(index,item){
+			str += "<tr><td>"+item.sid+"</td><td>"+option+"</td><td>"+item.stype+"</td>";
+			str += '<td><a href="javascript:dele('+item.sid+')">[删除]</a></td></tr>';
+		});
+		$("#admin_info").html($(str));
+	},"json");
+}
+function dele(sid){
+	
+	$.post("../TypeChange/deleteSongType",{
+		sid:sid
+	},function(data){
+		data = parseInt(data);
+		if( data > 0  ){
+			findby();
+			alert("删除成功");
+		}else{
+			alert("删除失败");
+		}
+	});
+}
 </script>
 </head>
 <body>
@@ -44,7 +89,7 @@ function add(){
 				
 				类型：<input type="text" id="atname"class="input-text lh30" size="40"/>&nbsp;&nbsp;
 				<input type="button" name="button" class="btn btn82 btn_save2" onclick="add()" value="添加"/>&nbsp;&nbsp;
-				<input type="button" name="button" class="btn btn82 btn_save2" onclick="select()" value="查询"/>&nbsp;&nbsp;
+				<input type="button" name="button" class="btn btn82 btn_save2" onclick="findby()" value="查询"/>&nbsp;&nbsp;
 				</form>
 			</div>
 		</div>
@@ -57,8 +102,8 @@ function add(){
 			<thead>
 				<tr>
 					<th width="20%">编号</th>
-                   	<th width="30%">姓名</th>
-                   	
+                   	<th width="30%">应用场景</th>
+                   	<th width="30%">类型</th>
                    	<th>操作</th>
                 </tr>
              </thead>
