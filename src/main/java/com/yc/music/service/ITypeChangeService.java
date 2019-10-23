@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.yc.music.bean.ApplicationTypeInfo;
+import com.yc.music.bean.CombinationInfo;
+import com.yc.music.bean.SingerInfo;
 import com.yc.music.bean.SongTypeInfo;
 
 public interface ITypeChangeService {
@@ -28,4 +30,32 @@ public interface ITypeChangeService {
 	
 	//删除类型
 	public int deleteSongType(int sid);
+	
+	//添加歌手
+	public int addSingerInfo(SingerInfo singerInfo);
+	
+	//查询所有的歌手
+	public List<SingerInfo> findSingerInfo();
+	
+	// 删除歌手
+	public int deleteSingerInfo(SingerInfo singerInfo);
+	
+	//歌手的分页查询
+	public List<SingerInfo> pagingSingerInfo(Integer pageNo,Integer pageSize);
+	
+	//删除歌手之后，把歌手夏敏的歌曲全部删除
+	public int deleteSingerInfoMusicinfo(SingerInfo singerInfo);
+	
+	//添加组合
+	public int addCombinationInfo(CombinationInfo combinationinfo);
+	
+	//查询所有的组合
+	public List<CombinationInfo> findCombinationInfo();
+	
+	//删除单个的组合
+	public int deleteCombinationInfo(CombinationInfo combinationinfo);
+	
+	//分页查询组合
+	public List<CombinationInfo> pagingCombinationInfo(Integer pageNo,Integer pageSize);
+	
 }

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../zlj/back/css/common.css">
+<link rel="stylesheet" href="../zlj/back/css/main.css">
+<script type="text/javascript" src="../zlj/back/js/jquery.min.js"></script>
+<script type="text/javascript" src="../zlj/back/js/admin.js"></script>
+<script type="text/javascript" src="../zlj/back/js/ajaxfileupload.js"></script>
+<script type="text/javascript">
+var pageNo = 1;
+var pageSize = 6;
+var totalSize = 0;	//总大小
+var totalPage = 0;	//总页数
+$(sele())
+function sele(){
+	$.post("../TypeChange/pagingSingerInfo", { pageNo:pageNo, pageSize:pageSize}, function(data) {
+		console.log(data);
+		totalSize = data.total+1;
+		totalPage = Math.ceil(totalSize / pageSize);
+		var str = "";
+		$.each(data.paging, function(index, item) {
+			str += "<tr><td>"+item.sgid+"</td><td>"+item.sgname+"</td><td>"+item.addr+"</td>";
+			str += "<td>"+item.sex+"</td><td>"+item.genre+"</td>"
+			str += '<td><img src="../../../'+item.by1+'" width="50px" height="50px" /></td>';
+			str += '<td>'+item.num+'</td><td><a href="javascript:dele('+item.sgid+')">[删除]</a></td></tr>';
+		});
+		$("#singer").html("").append($(str));
+	}, "json");
+	
+}
+
+function dele(sgid){
+	$.post("../TypeChange/deleteSingerInfo",{
+		sgid:sgid
+	},function(data){
+		data = parseInt(data);
+		if( data > 0 ){
+			sele();
+			alert("删除歌手歌曲成功。。。");
+		}else{
+			alert("删除失败");
+		}
+	});
+}
+
+
+function add(){
+	var sgname= $.trim( $("#sgname").val() );
+	var addr= $.trim( $("#addr").val() );
+	var sex = $("#sex").val();
+	var genre= $.trim( $("#genre").val() );
+	
+	if( sgname == "" || addr == ""  || sex == "" || genre == "" ){
+		alert("请写入要添加歌手的信息");
+		return;
+	}
+	
+	$.ajaxFileUpload({
+		url:'../file/addSingerInfo',
+		secureuri: false,
+		fileElementId:"pic",
+		dataType:"json",
+		data:{sgname:sgname, addr:addr,sex:sex,genre:genre },
+		success:function(data, stuts) {
+			data = parseInt(data);
+			if( data > 0 ){
+				sele();
+				alert("添加成功");
+			}else if( data == -1 ){
+				alert("输入的信息不完整或请选择图片");
+			}else{
+				alert("添加失败");
+			}
+		},
+		error:function(data, status, e) {
+			alert("添加失败，请稍后重试...\n" + e);
+		}
+	});
+	
+}
+function lower(){
+	console.log(pageNo+"--"+totalPage+"--"+totalSize);
+	if( (pageNo+1)>totalPage ){
+		alert("当前已是最大页");
+		return;
+	}else{
+		pageNo=pageNo+1;
+	}
+	
+	sele();
+}
+
+function upper(){
+	console.log(pageNo+"--"+totalPage+"--"+totalSize);
+	if( (pageNo-1)<0 ){
+		alert("当前已是最小页");
+		return;
+	}else{
+		pageNo=pageNo-1;
+	}
+	
+	sele();
+}
+
+
+</script>
+</head>
+<body>
+<div id="forms" class="mt10">
+	<div class="box">
+		<div class="box_border">
+			<div class="box_center">
+				<form id="myform">
+				歌手名字：<input type="text" id="sgname" class="input-text lh30" size="15"/>&nbsp;&nbsp;
+				歌手所在地：<input type="text" id="addr" class="input-text lh30" size="15"/>&nbsp;&nbsp;
+				<td>
+					<select class="select" name="sex" id="sex" >
+						<option value="男" >男</option>	
+						<option value="女" >女</option>			
+					</select>
+				</td>
+				曲风：<input type="text" id="genre" class="input-text lh30" size="15"/>&nbsp;&nbsp;
+				<td class="td_right">歌手图片：</td>
+				<td>
+					<input type="file" id="pic" name="pic" accept="image/*" class="input-text lh30" size="15" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
+				</td>
+				<input type="button" name="button" class="btn btn82 btn_save2" onclick="add()" value="添加"/>&nbsp;&nbsp;
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="table" class="mt10">
+	<div class="box span10 oh">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table">
+			<thead>
+				<tr>
+					<th width="10%">编号</th>
+                   	<th width="10%">歌手</th>
+                   	<th width="10%">地区</th>
+                   	<th width="10%">性别</th>
+                   	<th width="15%">曲风</th>
+                   	<th width="15%">歌手图片</th>
+                   	<th width="15%">粉丝数量</th>
+                   	<th>操作</th>
+                </tr>
+             </thead>
+             <tbody id="singer" align="center">
+				
+             </tbody>
+		</table>
+		<br/>
+		<div class="pagination">
+            <ul id ="pagination_info">
+				<li class="first-child active"><a href="javascript:void()" onclick="upper()">上一页</a></li>
+				
+				<li class="last-child"><a href="javascript:void()" onclick="lower()">下一页</a></li>'
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>

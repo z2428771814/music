@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yc.music.bean.ApplicationTypeInfo;
+import com.yc.music.bean.CombinationInfo;
+import com.yc.music.bean.SingerInfo;
 import com.yc.music.bean.SongTypeInfo;
 import com.yc.music.mapper.ITypeChangeMapper;
 import com.yc.music.service.ITypeChangeService;
@@ -64,6 +66,81 @@ public class TypeChangeServiceImpl implements ITypeChangeService {
 	@Override
 	public int deleteSongType(int sid) {
 		return mapper.deleteSongType(sid);
+	}
+
+
+	@Override
+	public int addSingerInfo(SingerInfo singerInfo) {
+		if( StringUtil.checkNull( singerInfo.getAddr(),singerInfo.getSgname(),singerInfo.getGenre(),singerInfo.getSex() ) ){
+			return -1;
+		}
+		return mapper.addSingerInfo(singerInfo);
+	}
+
+
+	@Override
+	public List<SingerInfo> findSingerInfo() {
+		return mapper.findSingerInfo();
+	}
+
+
+	@Override
+	public int deleteSingerInfo(SingerInfo singerInfo) {
+		return mapper.deleteSingerInfo(singerInfo);
+	}
+
+
+	@Override
+	public List<SingerInfo> pagingSingerInfo(Integer pageNo, Integer pageSize) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		pageNo = (pageNo-1)*pageSize;
+		if( pageNo <=0 ){
+			pageNo = 0;
+		}
+		map.put("pageNo", pageNo);
+		
+		map.put("pageSize", pageSize);
+		return mapper.pagingSingerInfo(map);
+	}
+
+
+	@Override
+	public int deleteSingerInfoMusicinfo(SingerInfo singerInfo) {
+		return mapper.deleteSingerInfoMusicinfo(singerInfo);
+	}
+
+
+	@Override
+	public int addCombinationInfo(CombinationInfo combinationinfo) {
+		if( StringUtil.checkNull( combinationinfo.getCname() ) ){
+			return -1;
+		}
+		return mapper.addCombinationInfo(combinationinfo);
+	}
+
+
+	@Override
+	public List<CombinationInfo> findCombinationInfo() {
+		return mapper.findCombinationInfo();
+	}
+
+
+	@Override
+	public int deleteCombinationInfo(CombinationInfo combinationinfo) {
+		return mapper.deleteCombinationInfo(combinationinfo);
+	}
+
+
+	@Override
+	public List<CombinationInfo> pagingCombinationInfo(Integer pageNo, Integer pageSize) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		pageNo = (pageNo-1)*pageSize;
+		if( pageNo <=0 ){
+			pageNo = 0;
+		}
+		map.put("pageNo", pageNo);
+		map.put("pageSize", pageSize);
+		return mapper.pagingCombinationInfo(map);
 	}
 
 }
