@@ -18,4 +18,10 @@ public interface IMusicInfoMapper {
 	 * @return
 	 */
 	public List<MusicInfo> newSong();
+	
+	/**
+	 * 查询歌曲详细信息
+	 * @return
+	 */
+	public MusicInfo songDetail(int mid);
 }

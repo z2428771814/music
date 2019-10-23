@@ -12,4 +12,9 @@
 	<select id="newSong" resultType="MusicInfo">
 		SELECT mid, sgname, mname, pices, musicaddr from singerinfo, musicinfo where singerinfo.sgid=musicinfo.sgid  ORDER BY mid DESC LIMIT 9
 	</select>
+	
+	<!-- 查询歌曲详细信息 -->
+	<select id="songDetail" parameterType="int" resultType="MusicInfo">
+		SELECT mid, mname, mi.by2, rgdate, pices, Lyricaddr, sgname, stype from musicinfo mi, singerinfo si, songtype st where mi.sgid = si.sgid and mi.sid=st.sid and mid = #{_parameter}
+	</select>
 </mapper>
