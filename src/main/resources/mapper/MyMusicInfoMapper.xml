@@ -12,4 +12,10 @@
 	<delete id="deleteMusic" parameterType="int"  >
 		delete from musicinfo where mid=#{mid}
 	</delete>
+	
+	<select id="findSongList" parameterType="UserListInfo" resultType="UserListInfo">
+		SELECT ul.lid,lname,COUNT(um.lid) num,ui.uname,ul.by2 FROM 
+			userlist ul,usermusic um,userinfo ui WHERE ul.lid = um.lid and ul.uid = ui.uid and uid=#{uid}
+	</select>
+	
 </mapper>

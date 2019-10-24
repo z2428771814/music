@@ -13,10 +13,15 @@ public class UserListInfo implements Serializable {
 	private String by2;
 	private String by3;
 	
+	// 用户名字
+	private String uname;
+	// 歌单里面音乐的数量
+	private int num;
+	
 	@Override
 	public String toString() {
 		return "UserListInfo [lid=" + lid + ", uid=" + uid + ", lname=" + lname + ", by1=" + by1 + ", by2=" + by2
-				+ ", by3=" + by3 + "]";
+				+ ", by3=" + by3 + ", uname=" + uname + ", num=" + num + "]";
 	}
 
 	public int getLid() {
@@ -67,6 +72,26 @@ public class UserListInfo implements Serializable {
 		this.by3 = by3;
 	}
 
+	public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,7 +101,9 @@ public class UserListInfo implements Serializable {
 		result = prime * result + ((by3 == null) ? 0 : by3.hashCode());
 		result = prime * result + lid;
 		result = prime * result + ((lname == null) ? 0 : lname.hashCode());
+		result = prime * result + num;
 		result = prime * result + uid;
+		result = prime * result + ((uname == null) ? 0 : uname.hashCode());
 		return result;
 	}
 
@@ -111,12 +138,19 @@ public class UserListInfo implements Serializable {
 				return false;
 		} else if (!lname.equals(other.lname))
 			return false;
+		if (num != other.num)
+			return false;
 		if (uid != other.uid)
+			return false;
+		if (uname == null) {
+			if (other.uname != null)
+				return false;
+		} else if (!uname.equals(other.uname))
 			return false;
 		return true;
 	}
 
-	public UserListInfo(int lid, int uid, String lname, String by1, String by2, String by3) {
+	public UserListInfo(int lid, int uid, String lname, String by1, String by2, String by3, String uname, int num) {
 		super();
 		this.lid = lid;
 		this.uid = uid;
@@ -124,11 +158,14 @@ public class UserListInfo implements Serializable {
 		this.by1 = by1;
 		this.by2 = by2;
 		this.by3 = by3;
+		this.uname = uname;
+		this.num = num;
 	}
 
 	public UserListInfo() {
 		super();
 	}
+	
 	
 	
 }

@@ -13,6 +13,7 @@ $(function() {
 		$("#login_TOp").prepend($(str));
 		$(".profile__name").html(data.uname);
 		$("#uid").val(data.uid);
+		
 	}, "json");
 })
 

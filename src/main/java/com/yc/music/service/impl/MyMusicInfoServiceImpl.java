@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yc.music.bean.MusicInfo;
+import com.yc.music.bean.UserListInfo;
 import com.yc.music.mapper.IMyMusicInfoMapper;
 import com.yc.music.service.IMyMusicInfoService;
 /**
@@ -28,6 +29,12 @@ public class MyMusicInfoServiceImpl implements IMyMusicInfoService {
 	//根据歌曲id删除歌曲
 	public int deleteMusic(Integer mid) {
 		return mapper.deleteMusic(mid);
+	}
+	
+	// 根据用户id查询歌单
+	@Override
+	public List<UserListInfo> findSongList(Integer uid) {
+		return mapper.findSongList(uid);
 	}
 	
 	

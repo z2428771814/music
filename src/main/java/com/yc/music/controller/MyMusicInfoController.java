@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yc.music.bean.MusicInfo;
+import com.yc.music.bean.UserListInfo;
 import com.yc.music.service.IMyMusicInfoService;
 import com.yc.music.util.StringUtil;
 
@@ -38,5 +39,16 @@ public class MyMusicInfoController {
 	@RequestMapping("/deleteMusic")
 	public int deleteMusic(Integer mid){
 		return service.deleteMusic(mid);
+	}
+	
+	/**
+	 * 根据用户id查询歌单
+	 * @param uid
+	 * @return
+	 */
+	@RequestMapping("/findSongList")
+	public List<UserListInfo> findSongList(Integer uid){
+		return service.findSongList(uid);
+		
 	}
 }

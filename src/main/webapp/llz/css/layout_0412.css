@@ -2858,3 +2858,73 @@ supports (-webkit-appearance:none ){ .
 	height: 14px;
 	background-position: -160px -320px
 }
+
+#addr_div{
+	width: 400px;
+	height: 250px;
+	border: 4px solid #4598D3;
+	border-radius:2px;
+	position: fixed;
+	left: 50%;
+	top:50%;
+	transform:translate(-50%,-50%);
+	-moz-transform:translate(-50%,-50%);
+	-webkit-transform:translate(-50%,-50%);
+	z-index:999;
+	background: #F7F5F4;
+	font-size: 14px;
+	padding: 20px 0px;
+	display: none;
+}
+
+#addr_div li{
+	margin-top: 20px;
+	text-align:center;
+	
+}
+
+#addr_div label{
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+}
+
+#addr_div input{
+	border:  1px solid #3198EE;
+	border-radius:2px;
+	width: 200px;
+	height: 24px;
+}
+
+#addr_div select{
+	border:  1px solid #3198EE;
+	border-radius:2px;
+	width: 160px;
+	height: 24px;
+}
+
+#addr_div>img{
+	position: absolute;
+	top:2px;
+	right: 2px;
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+}
+
+#addr_div .addr_btn{
+	text-align: center;
+	width: 100%;
+	padding-top: 30px;
+}
+
+#addr_div .addr_btn>a{
+	padding: 10px 20px;
+	background: #74A5C9;
+	color: #FFF;
+	border-radius:4px;
+}
+
+#addr_div .addr_btn>a:hover{
+	background: #148FE7;
+}
