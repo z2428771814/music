@@ -10,7 +10,7 @@
 	
 	<!-- 查询最新歌曲 -->
 	<select id="newSong" resultType="MusicInfo">
-		SELECT mid, sgname, mname, pices, musicaddr from singerinfo, musicinfo where singerinfo.sgid=musicinfo.sgid  ORDER BY mid DESC LIMIT 9
+		SELECT * from (SELECT mid, sgname, mname, pices, musicaddr from singerinfo, musicinfo where singerinfo.sgid=musicinfo.sgid  ORDER BY mid DESC LIMIT 10) as ab LIMIT 0,3
 	</select>
 	
 	<!-- 查询歌曲详细信息 -->

@@ -39,24 +39,6 @@ $(function() {
 		$("#mod_index_tab").append($(str));
 	}, "json");
 	
-	//最新歌曲
-	$.post("music/newSong", null, function(data) {
-		console.log(data);
-		var str = "";
-		$.each(data, function(index, item) {
-			str += '<li class="songlist__item"><div class="songlist__item_box">';
-			str += '<a title="'+item.mname+'" class="album_name songlist__link mod_cover">';
-			str += '<img class="songlist__pic" src="'+item.pices+'">';
-			str += '<i class="mod_cover__mask"></i><i class="mod_cover__icon_play"></i></a>';
-			str += '<div class="songlist__cont"><h3 class="songlist__song"><a title="'+item.mname+'" href="tzs/song_page.html#'+item.mid+'">'+item.mname+'</a></h3>';
-			str += '<p class="songlist__author"><a title="'+item.sgname+'" class="c_tx_thin singer_name">'+item.sgname+'</a>';
-			str += '</p><div class="songlist__time c_tx_thin">04:00</div></div></li>';
-		});
-		
-		$(".songlist__list").append($(str));
-	}, "json");
-	
-	
 	$.post("user/check", null, function(data) {
 		var str = "";
 		console.log(data);
@@ -71,6 +53,8 @@ $(function() {
 		$("#login_TOp").prepend($(str));
 	}, "json");
 })
+
+
 
 
 

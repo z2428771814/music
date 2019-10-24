@@ -466,10 +466,10 @@
         </div>
         <div class="mod_slide_action">
             <div class="slide_action slide_action--left">
-                <a href="javascript:;" class="slide_action__btn slide_action__btn--left js_jump" data-p="prev" tabindex="-1" data-stat="y_new.index.new_song.pager"><i class="icon_txt">上一页</i><i class="slide_action__arrow slide_action__arrow--left sprite"></i></a>
+                <a href="javascript:findByPage(-1);" class="slide_action__btn slide_action__btn--left js_jump" data-p="prev" tabindex="-1" data-stat="y_new.index.new_song.pager"><i class="icon_txt">上一页</i><i class="slide_action__arrow slide_action__arrow--left sprite"></i></a>
             </div>
             <div class="slide_action slide_action--right">
-                <a href="javascript:;" class="slide_action__btn slide_action__btn--right js_jump" data-p="next" tabindex="-1" data-stat="y_new.index.new_song.pager"><i class="icon_txt">下一页</i><i class="slide_action__arrow slide_action__arrow--right sprite"></i></a>
+                <a href="javascript:findByPage(1);" class="slide_action__btn slide_action__btn--right js_jump" data-p="next" tabindex="-1" data-stat="y_new.index.new_song.pager"><i class="icon_txt">下一页</i><i class="slide_action__arrow slide_action__arrow--right sprite"></i></a>
             </div>
         </div>
     </div>
@@ -1101,6 +1101,32 @@
 </div>
 <script src="tzs/js/jquery-3.4.1.min.js"></script>
 <script src="tzs/js/basic.js"></script>
-
+<script type="text/javascript">
+$(function() {
+	//最新歌曲
+	$.post("music/newSong", null, function(data) {
+		console.log(data);
+		var str = "";
+		$.each(data, function(index, item) {
+			str += '<li class="songlist__item"><div class="songlist__item_box">';
+			str += '<a title="'+item.mname+'" class="album_name songlist__link mod_cover">';
+			str += '<img class="songlist__pic" src="'+item.pices+'">';
+			str += '<i class="mod_cover__mask"></i><i class="mod_cover__icon_play"></i></a>';
+			str += '<div class="songlist__cont"><h3 class="songlist__song"><a title="'+item.mname+'" href="tzs/song_page.html#'+item.mid+'">'+item.mname+'</a></h3>';
+			str += '<p class="songlist__author"><a title="'+item.sgname+'" class="c_tx_thin singer_name">'+item.sgname+'</a>';
+			str += '</p><div class="songlist__time c_tx_thin">04:00</div></div></li>';
+		});
+		
+		$(".songlist__list").append($(str));
+	}, "json");
+})
+var page = 1;
+var rows = 3;
+function findByPage(pageNo) {
+	page = pageNo;
+	alert(page);
+	
+}
+</script>
 </body>
 </html>
