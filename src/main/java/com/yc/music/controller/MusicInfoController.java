@@ -28,8 +28,16 @@ public class MusicInfoController {
 		return service.findAddr();
 	}
 	
+	//查询最新歌曲
 	@RequestMapping("/newSong")
 	public List<MusicInfo> newSong() {
 		return service.newSong();
+	}
+	
+	//查询歌曲详细信息
+	@RequestMapping("/songDetail")
+	public MusicInfo songDetail(Integer mid) {
+		return service.songDetail(mid);
+		
 	}
 }

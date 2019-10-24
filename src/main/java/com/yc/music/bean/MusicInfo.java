@@ -19,6 +19,21 @@ public class MusicInfo implements Serializable{
 	private String by2;
 	private String by3;
 	
+	private String sgname;
+	private String stype;
+	
+	public String getStype() {
+		return stype;
+	}
+	public void setStype(String stype) {
+		this.stype = stype;
+	}
+	public String getSgname() {
+		return sgname;
+	}
+	public void setSgname(String sgname) {
+		this.sgname = sgname;
+	}
 	public int getMid() {
 		return mid;
 	}

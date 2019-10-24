@@ -30,5 +30,11 @@ public class MusicInfoServiceImpl implements IMusicInfoService {
 	public List<MusicInfo> newSong() {
 		return mapper.newSong();
 	}
+
+	//查询歌曲详细信息
+	@Override
+	public MusicInfo songDetail(int mid) {
+		return mapper.songDetail(mid);
+	}
 	
 }
