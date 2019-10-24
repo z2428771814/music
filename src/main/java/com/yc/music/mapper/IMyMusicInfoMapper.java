@@ -20,4 +20,6 @@ public interface IMyMusicInfoMapper {
 	// 根据用户id查询歌单
 	public List<UserListInfo> findSongList(Integer uid);
 	
+	// 根据歌单id删除歌单
+	public int deleteGedan(Integer lid);
 }

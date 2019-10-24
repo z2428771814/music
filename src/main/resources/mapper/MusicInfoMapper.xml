@@ -17,4 +17,6 @@
 	<select id="songDetail" parameterType="int" resultType="MusicInfo">
 		SELECT mid, mname, mi.by2, rgdate, pices, Lyricaddr, sgname, stype from musicinfo mi, singerinfo si, songtype st where mi.sgid = si.sgid and mi.sid=st.sid and mid = #{_parameter}
 	</select>
+	
+	
 </mapper>

@@ -37,6 +37,12 @@ public class MyMusicInfoServiceImpl implements IMyMusicInfoService {
 		return mapper.findSongList(uid);
 	}
 	
+	// 根据歌单id删除歌单
+	@Override
+	public int deleteGedan(Integer lid) {
+		return mapper.deleteGedan(lid);
+	}
+	
 	
 	
 	
