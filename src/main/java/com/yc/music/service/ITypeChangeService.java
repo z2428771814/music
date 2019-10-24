@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.yc.music.bean.ApplicationTypeInfo;
 import com.yc.music.bean.CombinationInfo;
+import com.yc.music.bean.MusicInfo;
 import com.yc.music.bean.SingerInfo;
 import com.yc.music.bean.SongTypeInfo;
 
@@ -57,5 +58,8 @@ public interface ITypeChangeService {
 	
 	//分页查询组合
 	public List<CombinationInfo> pagingCombinationInfo(Integer pageNo,Integer pageSize);
+	
+	//添加音乐
+	public int addMusicInfo(MusicInfo musicinfo,String sgname,String cname);
 	
 }
