@@ -49,7 +49,7 @@
         </ul>
 	    <ul class="mod_top_subnav" style="display:;">
 		<li class="top_subnav__item">
-		    <a href="//y.qq.com" class="top_subnav__link">首页</a>
+		    <a href="../index.html" class="top_subnav__link">首页</a>
 		</li>
 		<li class="top_subnav__item">
 		    <a href="/portal/singer_list.html" class="top_subnav__link">歌手</a>
@@ -87,15 +87,8 @@
 
                
                 <!-- 未登录 -->
-                <span class="mod_top_login">
-		    <a class="top_login__link js_logined" href="//y.qq.com/portal/profile.html#stat=y_new.top.user_pic" onclick="setStatCookie&&setStatCookie();" style="display:none;">
-                        <img src="//y.gtimg.cn/mediastyle/global/img/person_300.png?max_age=2592000" class="top_login__cover" alt="" />
-                    </a>
-                    <a class="top_login__link js_login" data-stat="y_new.top.login" href="javascript:;">
-                        登录
-                    </a>
-
-                    <a class="login__link header__link js_login" data-stat="y_new.top.login" href="javascript:;">登录</a>
+                <span class="mod_top_login" id="login_TOp">
+		    
                     <a class="mod_btn_green top_login__btn_vip js_openvip" data-aid="music.pc.20316.newyqqtop" data-stat="music.20316.btnclick.pc" href="javascript:;">开通绿钻豪华版</a>
 		    <a class="mod_btn top_login__btn_vip js_openmusic" data-aid="music.pc.20317.newyqqtop" data-stat="music.20317.btnclick.pc" href="javascript:;">开通付费包</a>
                 </span>
@@ -108,7 +101,8 @@
     <!-- 头部 E -->
 
 	<div class="main" >
-		<div class="mod_data" itemscope itemtype="http://schema.org/MusicRecording" style="display:;">
+		<div class="mod_data" itemscope itemtype="http://schema.org/MusicRecording" style="display:;" id="song_list">
+		<!--  
 		    <span class="data__cover">
 			
 				<img src="//y.gtimg.cn/music/photo_new/T002R300x300M000002RyzDh1e4Z1b.jpg?max_age=2592000" onerror="this.src='//y.gtimg.cn/mediastyle/global/img/album_300.png?max_age=31536000';this.onerror=null;" alt="悟空传&#32;电影音乐原声带" class="data__photo"/>
@@ -158,6 +152,7 @@
 			    
 			</div>
 		    </div>
+		    -->
 		</div>
 			
 					
@@ -310,7 +305,44 @@
         </div>
     </div>
 </div>
-
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/basic2.js"></script>
+<script type="text/javascript">
+$(function() {
+	var hash = $.trim(location.href.split("#")[1]);
+	if (hash == "") {
+		location.href = "../index.html";
+	} else {
+		$.post("../music/songDetail", {mid:hash}, function(data) {
+			rgdate=data.rgdate;
+			date=rgdate.substring(0,10);
+			var str = "";
+			if (data.length <= 0) {
+				alert("网络错误...");
+			} else {
+				str += '<span class="data__cover">'
+				str += '<img id="albumImg" src="../'+data.pices+'" class="data__photo"/>';
+				str += '<i class="data__cover_mask"></i></span>';
+				str += '<div class="data__cont"><div class="data__name">';
+				str += '<h1 class="data__name_txt" title="'+data.mname+'">'+data.mname+'</h1></div>';
+				str += '<div class="data__singer">';
+				str += '<i class="icon_singer sprite"></i><a href="//y.qq.com/n/yqq/singer/0046fVNz3ruk2r.html">'+data.sgname+'</a>';
+				str += '</div><ul class="data__info">';
+				str += '<li class="data_info__item">类型：'+data.stype+'</li>';
+				str += '<li class="data_info__item">发行时间：'+date+'</li>';
+				str += '<li class="data_info__item data_info__item--even">唱片公司：'+data.by2+'</li></ul>';
+				str += '<div class="data__actions" role="toolbar">';
+				str += '<a href="//y.qq.com/portal/player.html" class="mod_btn_green js_all_play" <i class="mod_btn_green__icon_play"></i>播放</a>';
+				str += '<a href="javascript:;" class="mod_btn js_fav_album" data-stat="y_new.album.header.love" data-status="0"><i class="mod_btn__icon_like"></i>收藏</a>';
+				str += '<a class="mod_btn js_into_comment" data-stat="y_new.album.gotocomment" href="#comment_box"><i class="mod_btn__icon_comment"></i>评论</a>';
+				str += '<a href="javascript:;" class="mod_btn js_more" data-mid="003JMhfs11lTHB" data-id="8921857" data-stat="y_new.album.header.more"><i class="mod_btn__icon_menu"></i>更多</a>';
+				str += '</div></div>'
+			}
+			$("#song_list").append($(str));
+		}, "json")
+	}
+})
+</script>
 </body>
 </html>
             

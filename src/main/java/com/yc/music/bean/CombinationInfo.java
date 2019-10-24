@@ -8,6 +8,7 @@ public class CombinationInfo {
 	private String by1;
 	private String by2;
 	private String by3;
+	
 	public int getCid() {
 		return cid;
 	}

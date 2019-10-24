@@ -39,7 +39,7 @@ function find(){
 			str += '<tr><td>'+item.atid+'</td>';
 			str += '<td>'+item.atname+'</td><td><a href="javascript:dele('+item.atid+')">[删除]</a></td></tr>';
 		});
-		$("#admin_info").append($(str));
+		$("#admin_info").html($(str));
 	},"json");
 }
 
@@ -49,6 +49,8 @@ function dele(atid){
 	},function(data){
 		data = parseInt(data);
 		if( data > 0 ){
+			find();
+			
 			alert("删除成功，对应的类型已经清空");
 		}else{
 			alert("删除失败，稍后重试");

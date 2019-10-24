@@ -8,6 +8,7 @@
 <script type="text/javascript" src="../zlj/back/js/showpic.js"></script>
 <script type="text/javascript" src="../zlj/back/js/ajaxfileupload.js"></script>
 <script src="../../zlj/back/ckeditor/ckeditor.js"></script>
+
 <script type="text/javascript">
 
 </script>
@@ -23,46 +24,53 @@
 				<form action="" class="jqtransform" id="addGoodsForm">
 					<table class="form_table pt15 pb15" width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr>
-							<td class="td_right">商品类型：</td>
+							<td class="td_right">应用场景：</td>
 							<td>
-								<select class="select" name="tid" id="goodsType">
+								<select class="select" name="tid" id="ApplicationType" onchange = "checkLawyerType();">
 								
 								</select>
 							</td>
-							<td class="td_right">商品名称：</td>
+							<td class="td_right">类型：</td>
 							<td>
-								<input type="text" id="gname" name="title" class="input-text lh30" size="40" placeholder="请输入商品名称">
+								<select class="select" name="tid" id="songtype">
+								
+								</select>
 							</td>
-							<td class="td_right">商品单价：</td>
+							<td class="td_right">组合名称：</td>
 							<td>
-								<input type="number" id="price" name="price" class="input-text lh30" size="40" placeholder="单价"/>
-							</td>
-						</tr>
-						<tr>
-							<td class="td_right">商品库存：</td>
-							<td>
-								<input type="number" id="balance" name="balance" class="input-text lh30" size="40"  placeholder="库存"/>
-							</td>
-							<td class="td_right">商品单位：</td>
-							<td>
-								<input type="text" id="unit" name="unit" class="input-text lh30" size="40" placeholder="单位"/>
-							</td>
-							<td class="td_right">保质期：</td>
-							<td>
-								<input type="text" id="qperied" name="qperied" class="input-text lh30" size="40"  placeholder="保质期"/>
+								<input type="text" id="cname" name="cname" class="input-text lh30" size="40" />
 							</td>
 						</tr>
+						
 						<tr>
-							<td class="td_right">商品净重：</td>
+							<td class="td_right">歌曲名字：</td>
 							<td>
-								<input type="text" id="weight" name="weight" class="input-text lh30" size="40" placeholder="净重" >
+								<input type="text" id="mname" name="mname" class="input-text lh30" size="40" />
 							</td>
-							<td class="td_right">商品图片：</td>
+							<td class="td_right">歌手名字：</td>
+							<td>
+								<input type="text" id="sgname" name="sgname" class="input-text lh30" size="40"/>
+							</td>
+							<td class="td_right">发行公司：</td>
+							<td>
+								<input type="text" id="unit" name="unit" class="input-text lh30" size="40"/>
+							</td>
+							
+						</tr>
+						
+						<tr>
+						
+							<td class="td_right">歌曲图片：</td>
 							<td>
 								<input type="file" id="pic" name="pic" accept="audio/mpeg" class="input-text lh30" size="40" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
 							</td>
+							<td class="td_right">歌曲上传地址：</td>
 							<td>
-								<input type="file" id="lc" name="lc" class="input-text lh30" size="40" multiple="multiple" >
+								<input type="file" id="mus" name="mus" accept="audio/mpeg" class="input-text lh30" size="40" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
+							</td>
+							<td class="td_right">歌词播发地址：</td>
+							<td>
+								<input type="file" id="lyri" name="lyri" accept="audio/mpeg" class="input-text lh30" size="40" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
 							</td>
 							<td></td>
 							<td></td>
@@ -75,21 +83,10 @@
 								</div>
 							</td>
 						</tr>
+						
 						<tr>
-							<td class="td_right">商品简介：</td>
-							<td colspan="5">
-								 <textarea name="intro" id="intro" rows="3" cols="100"></textarea>
-							</td>
-						</tr>
-						<tr>
-							<td class="td_right">商品描述：</td>
-							<td colspan="5">
-								 <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4" align="center">
-								<input type="button" name="button" class="btn btn82 btn_save2" onclick="addGoodsInfo()" value="添加">
+							<td colspan="10" align="center">
+								<input type="button" name="button" class="btn btn82 btn_save2" onclick="addMusic()" value="添加">
 								<input type="reset" name="button" class="btn btn82 btn_res" value="重置">
 							</td>
 						</tr>
@@ -100,21 +97,66 @@
 	</div>
 </div>
 <script type="text/javascript">
-CKEDITOR.replace( 'editor1' );
 
-function addGoodsInfo() {
+
+$(function(){
+	$.post("../TypeChange/findApplicationType",null,function(data){
+		
+		var str = "";
+		$.each(data,function(index,item){
+			str += '<option value="'+item.atid+'">'+item.atname+'</option>';
+		});
+		
+		$("#ApplicationType").html(str);
+	},"json");
+})
+function checkLawyerType(){
+	var atid=$("#ApplicationType").val();
+	if( atid == null ){
+		return;
+	}
+	$.post("../TypeChange/findByAtidSongType",{
+		atid:atid
+		},function(data){
+		var str = "";
+		$.each(data,function(index,item){
+			str += '<option value="'+item.sid+'">'+item.stype+'</option>';
+		});
+		$("#songtype").html(str);
+	},"json");
+}
+function addMusic(){
+	var atid=$("#ApplicationType").val();		//应用场景id
+	var sid=$("#songtype").val();				//类型id
+	var cname=$.trim( $("#cname").val() );		//组合名字
+	var mname=$.trim( $("#mname").val() );		//歌曲名字
+	var sgname=$.trim( $("#sgname").val() );	//歌手名字
+	var by2 =$.trim( $("#by2").val() );			//发行公司
 	
-	var pic=["music","lc"];
+	if( atid == null || sid == null || cname ==null || mname ==null || sgname == null || by2 == null ){
+		alert("请输入完整的信息在添加。。。");
+		return;
+	}
+	
 	$.ajaxFileUpload({
-		url:'../upload/addGood',
+		url:'../file/addMusic',
 		secureuri: false,
-		fileElementId:"lc",
+		fileElementId:"pic",
 		dataType:"json",
+		data:{sgname:sgname, addr:addr,sex:sex,genre:genre },
 		success:function(data, stuts) {
-			console.log("成功");
+			data = parseInt(data);
+			if( data > 0 ){
+				sele();
+				alert("添加成功");
+			}else if( data == -1 ){
+				alert("输入的信息不完整或请选择图片");
+			}else{
+				alert("添加失败");
+			}
 		},
 		error:function(data, status, e) {
-			alert("商品信息添加失败，请稍后重试...\n" + e);
+			alert("添加失败，请稍后重试...\n" + e);
 		}
 	});
 }

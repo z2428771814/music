@@ -5,5 +5,60 @@
 <mapper namespace="com.yc.music.mapper.ITypeChangeMapper">
 	
 	
+	<insert id="addApplicationType" parameterType="ApplicationTypeInfo">
+		insert into applicationtype values(0,#{atname},null,null,null);
+	</insert>
+	<select id="findApplicationType" resultType="ApplicationTypeInfo">
+		select atid,atname,by1,by2,by3 from applicationtype
+	</select>
+	<delete id="deleteApplicationType" parameterType="ApplicationTypeInfo">
+		delete from applicationtype where atid=#{atid}
+	</delete>
+	<delete id="deleteSongTypeInfo" parameterType="ApplicationTypeInfo">
+		delete from songtype where atid=#{atid}
+	</delete>
+	
+	
+	
+	<insert id="addSongType" parameterType="map">
+		insert into songtype values(0,#{atid},#{stype},null,null,null)
+	</insert>
+	<select id="findByAtidSongType" parameterType="int" resultType="SongTypeInfo">
+		select sid,atid,stype,by1,by2,by3 from songtype where atid=#{_parameter}
+	</select>
+	<delete id="deleteSongType" parameterType="int">
+		delete from songtype where sid=#{_parameter}
+	</delete>
+	
+	
+	<insert id="addSingerInfo" parameterType="SingerInfo">
+		 insert into singerinfo values(0,#{sgname},#{addr},#{sex},#{genre},null,null,null,#{by1},null,null)
+	</insert>
+	<select id="findSingerInfo" resultType="SingerInfo">
+		select sgid,sgname,addr,sex,genre,status,cid,num,by1,by2,by3 from singerinfo
+	</select>
+	<delete id="deleteSingerInfo" parameterType="SingerInfo">
+		delete from singerinfo where sgid=#{sgid}
+	</delete>
+	<select id="pagingSingerInfo" parameterType="map" resultType="SingerInfo">
+		select sgid,sgname,addr,sex,genre,status,cid,num,by1,by2,by3 from singerinfo order by num desc  ,sgid  limit #{pageNo},#{pageSize}
+	</select>
+	<delete id="deleteSingerInfoMusicinfo" parameterType="SingerInfo">
+		delete from musicinfo where sgid=#{sgid}
+	</delete>
+	
+	
+	<insert id="addCombinationInfo" parameterType="CombinationInfo">
+		 insert into combination values(0,#{cname},0,#{by1},null,null)
+	</insert>
+	<select id="findCombinationInfo" resultType="CombinationInfo">
+		select cid,cname,num,by1,by2,by3 from combination
+	</select>
+	<delete id="deleteCombinationInfo" parameterType="CombinationInfo">
+		delete from combination where cid=#{cid}
+	</delete>
+	<select id="pagingCombinationInfo" parameterType="map" resultType="CombinationInfo">
+		select cid,cname,num,by1,by2,by3 from combination order by num desc  ,cid  limit #{pageNo},#{pageSize}
+	</select>
  
 </mapper>

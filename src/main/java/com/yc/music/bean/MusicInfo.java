@@ -21,6 +21,7 @@ public class MusicInfo implements Serializable{
 	private String sgname;
 	private String lname;
 	
+<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return "MusicInfo [mid=" + mid + ", sgid=" + sgid + ", sid=" + sid + ", cid=" + cid + ", atid=" + atid
@@ -29,6 +30,23 @@ public class MusicInfo implements Serializable{
 				+ ", by3=" + by3 + ", sgname=" + sgname + ", lname=" + lname + "]";
 	}
 
+=======
+	private String sgname;
+	private String stype;
+	
+	public String getStype() {
+		return stype;
+	}
+	public void setStype(String stype) {
+		this.stype = stype;
+	}
+	public String getSgname() {
+		return sgname;
+	}
+	public void setSgname(String sgname) {
+		this.sgname = sgname;
+	}
+>>>>>>> d73fe7e45625ea4f092085cd4f46578c3339bf68
 	public int getMid() {
 		return mid;
 	}
