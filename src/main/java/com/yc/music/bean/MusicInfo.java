@@ -18,19 +18,7 @@ public class MusicInfo implements Serializable{
 	private String rgdate;
 	private String by2;
 	private String by3;
-	private String sgname;
-	private String lname;
 	
-<<<<<<< HEAD
-	@Override
-	public String toString() {
-		return "MusicInfo [mid=" + mid + ", sgid=" + sgid + ", sid=" + sid + ", cid=" + cid + ", atid=" + atid
-				+ ", mname=" + mname + ", pices=" + pices + ", musicaddr=" + musicaddr + ", Lyricaddr=" + Lyricaddr
-				+ ", judgestauts=" + judgestauts + ", status=" + status + ", rgdate=" + rgdate + ", by2=" + by2
-				+ ", by3=" + by3 + ", sgname=" + sgname + ", lname=" + lname + "]";
-	}
-
-=======
 	private String sgname;
 	private String stype;
 	
@@ -46,135 +34,90 @@ public class MusicInfo implements Serializable{
 	public void setSgname(String sgname) {
 		this.sgname = sgname;
 	}
->>>>>>> d73fe7e45625ea4f092085cd4f46578c3339bf68
 	public int getMid() {
 		return mid;
 	}
-
 	public void setMid(int mid) {
 		this.mid = mid;
 	}
-
 	public int getSgid() {
 		return sgid;
 	}
-
 	public void setSgid(int sgid) {
 		this.sgid = sgid;
 	}
-
 	public int getSid() {
 		return sid;
 	}
-
 	public void setSid(int sid) {
 		this.sid = sid;
 	}
-
 	public int getCid() {
 		return cid;
 	}
-
 	public void setCid(int cid) {
 		this.cid = cid;
 	}
-
 	public int getAtid() {
 		return atid;
 	}
-
 	public void setAtid(int atid) {
 		this.atid = atid;
 	}
-
 	public String getMname() {
 		return mname;
 	}
-
 	public void setMname(String mname) {
 		this.mname = mname;
 	}
-
 	public String getPices() {
 		return pices;
 	}
-
 	public void setPices(String pices) {
 		this.pices = pices;
 	}
-
 	public String getMusicaddr() {
 		return musicaddr;
 	}
-
 	public void setMusicaddr(String musicaddr) {
 		this.musicaddr = musicaddr;
 	}
-
 	public String getLyricaddr() {
 		return Lyricaddr;
 	}
-
 	public void setLyricaddr(String lyricaddr) {
 		Lyricaddr = lyricaddr;
 	}
-
 	public int getJudgestauts() {
 		return judgestauts;
 	}
-
 	public void setJudgestauts(int judgestauts) {
 		this.judgestauts = judgestauts;
 	}
-
 	public int getStatus() {
 		return status;
 	}
-
 	public void setStatus(int status) {
 		this.status = status;
 	}
-
 	public String getRgdate() {
 		return rgdate;
 	}
-
 	public void setRgdate(String rgdate) {
 		this.rgdate = rgdate;
 	}
-
 	public String getBy2() {
 		return by2;
 	}
-
 	public void setBy2(String by2) {
 		this.by2 = by2;
 	}
-
 	public String getBy3() {
 		return by3;
 	}
-
 	public void setBy3(String by3) {
 		this.by3 = by3;
 	}
-
-	public String getSgname() {
-		return sgname;
-	}
-
-	public void setSgname(String sgname) {
-		this.sgname = sgname;
-	}
-
-	public String getLname() {
-		return lname;
-	}
-
-	public void setLname(String lname) {
-		this.lname = lname;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -185,19 +128,16 @@ public class MusicInfo implements Serializable{
 		result = prime * result + ((by3 == null) ? 0 : by3.hashCode());
 		result = prime * result + cid;
 		result = prime * result + judgestauts;
-		result = prime * result + ((lname == null) ? 0 : lname.hashCode());
 		result = prime * result + mid;
 		result = prime * result + ((mname == null) ? 0 : mname.hashCode());
 		result = prime * result + ((musicaddr == null) ? 0 : musicaddr.hashCode());
 		result = prime * result + ((pices == null) ? 0 : pices.hashCode());
 		result = prime * result + ((rgdate == null) ? 0 : rgdate.hashCode());
 		result = prime * result + sgid;
-		result = prime * result + ((sgname == null) ? 0 : sgname.hashCode());
 		result = prime * result + sid;
 		result = prime * result + status;
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -228,11 +168,6 @@ public class MusicInfo implements Serializable{
 			return false;
 		if (judgestauts != other.judgestauts)
 			return false;
-		if (lname == null) {
-			if (other.lname != null)
-				return false;
-		} else if (!lname.equals(other.lname))
-			return false;
 		if (mid != other.mid)
 			return false;
 		if (mname == null) {
@@ -257,21 +192,21 @@ public class MusicInfo implements Serializable{
 			return false;
 		if (sgid != other.sgid)
 			return false;
-		if (sgname == null) {
-			if (other.sgname != null)
-				return false;
-		} else if (!sgname.equals(other.sgname))
-			return false;
 		if (sid != other.sid)
 			return false;
 		if (status != other.status)
 			return false;
 		return true;
 	}
-
+	@Override
+	public String toString() {
+		return "MusicInfo [mid=" + mid + ", sgid=" + sgid + ", sid=" + sid + ", cid=" + cid + ", atid=" + atid
+				+ ", mname=" + mname + ", pices=" + pices + ", musicaddr=" + musicaddr + ", Lyricaddr=" + Lyricaddr
+				+ ", judgestauts=" + judgestauts + ", status=" + status + ", rgdate=" + rgdate + ", by2=" + by2
+				+ ", by3=" + by3 + "]";
+	}
 	public MusicInfo(int mid, int sgid, int sid, int cid, int atid, String mname, String pices, String musicaddr,
-			String lyricaddr, int judgestauts, int status, String rgdate, String by2, String by3, String sgname,
-			String lname) {
+			String lyricaddr, int judgestauts, int status, String rgdate, String by2, String by3) {
 		super();
 		this.mid = mid;
 		this.sgid = sgid;
@@ -287,14 +222,11 @@ public class MusicInfo implements Serializable{
 		this.rgdate = rgdate;
 		this.by2 = by2;
 		this.by3 = by3;
-		this.sgname = sgname;
-		this.lname = lname;
 	}
-
 	public MusicInfo() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	
 	
 	
 }
