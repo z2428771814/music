@@ -60,5 +60,18 @@
 	<select id="pagingCombinationInfo" parameterType="map" resultType="CombinationInfo">
 		select cid,cname,num,by1,by2,by3 from combination order by num desc  ,cid  limit #{pageNo},#{pageSize}
 	</select>
+	
+	
+	
+	<insert id="addMusicInfo" parameterType="MusicInfo">
+		insert into musicinfo values(0,#{sgid},#{sid},#{cid},#{atid},#{mname},#{pices},#{musicaddr},#{Lyricaddr},0,0,now(),#{by2},null)
+	</insert>
+	<select id="findbySingerInfoId" parameterType="string" resultType="SingerInfo">
+		select sgid,sgname,addr,sex,genre,status,cid,num,by1,by2,by3 from singerinfo where sgname=#{_parameter}
+	</select>
+	<select id="findByCombinationInfoId"  parameterType="string" resultType="CombinationInfo">
+		select cid,cname,num,by1,by2,by3 from combination where cname=#{_parameter}
+	</select>
+	
  
 </mapper>

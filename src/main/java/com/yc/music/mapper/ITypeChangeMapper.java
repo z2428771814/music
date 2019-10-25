@@ -8,6 +8,7 @@ import org.springframework.data.redis.connection.ReactiveListCommands.LInsertCom
 
 import com.yc.music.bean.ApplicationTypeInfo;
 import com.yc.music.bean.CombinationInfo;
+import com.yc.music.bean.MusicInfo;
 import com.yc.music.bean.SingerInfo;
 import com.yc.music.bean.SongTypeInfo;
 
@@ -119,6 +120,27 @@ public interface ITypeChangeMapper {
 	 * @return
 	 */
 	public List<CombinationInfo> pagingCombinationInfo(Map<String, Object> map);
+	
+	/**
+	 * 添加音乐
+	 * @param musicinfo
+	 * @return
+	 */
+	public int addMusicInfo(MusicInfo musicinfo);
+	
+	/**
+	 * 查询单个歌手是否存在
+	 * @param sgname
+	 * @return
+	 */
+	public SingerInfo findbySingerInfoId(String sgname);
+	
+	/**
+	 * 查询单个的组合
+	 * @param cname
+	 * @return
+	 */
+	public CombinationInfo findByCombinationInfoId(String cname);
 	
 	
 }

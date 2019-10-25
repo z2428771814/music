@@ -53,7 +53,7 @@
 							</td>
 							<td class="td_right">发行公司：</td>
 							<td>
-								<input type="text" id="unit" name="unit" class="input-text lh30" size="40"/>
+								<input type="text" id="by2" name="by2" class="input-text lh30" size="40"/>
 							</td>
 							
 						</tr>
@@ -62,7 +62,7 @@
 						
 							<td class="td_right">歌曲图片：</td>
 							<td>
-								<input type="file" id="pic" name="pic" accept="audio/mpeg" class="input-text lh30" size="40" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
+								<input type="file" id="pic" name="pic" accept="img/*" class="input-text lh30" size="40" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
 							</td>
 							<td class="td_right">歌曲上传地址：</td>
 							<td>
@@ -70,7 +70,7 @@
 							</td>
 							<td class="td_right">歌词播发地址：</td>
 							<td>
-								<input type="file" id="lyri" name="lyri" accept="audio/mpeg" class="input-text lh30" size="40" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
+								<input type="file" id="lyri" name="lyri"  class="input-text lh30" size="40" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
 							</td>
 							<td></td>
 							<td></td>
@@ -133,21 +133,38 @@ function addMusic(){
 	var sgname=$.trim( $("#sgname").val() );	//歌手名字
 	var by2 =$.trim( $("#by2").val() );			//发行公司
 	
-	if( atid == null || sid == null || cname ==null || mname ==null || sgname == null || by2 == null ){
+	var lyri=$("#lyri").val();					//获取我们歌词的名字
+	if( (lyri.substring(lyri.length-3))  != "lrc" ){
+		alert("请上传.lrc结尾的歌词文件");
+		return;
+	}
+	console.log(atid );
+	console.log(sid );
+	console.log(mname );
+	console.log(by2 );
+	if( atid == "" || sid == "" ||  mname =="" ||  by2 == "" ){
 		alert("请输入完整的信息在添加。。。");
+		return;
+	}
+	if( cname != "" && sgname!="" ){
+		alert("一首歌只能由歌手或者组合一位出曲");
+		return;
+	}
+	if(  cname == "" && sgname=="" ){
+		alert("请输入歌曲唱者");
 		return;
 	}
 	
 	$.ajaxFileUpload({
-		url:'../file/addMusic',
+		url:'../file/addMusicInfo',
 		secureuri: false,
-		fileElementId:"pic",
+		fileElementId:["pic","mus","lyri"],
 		dataType:"json",
-		data:{sgname:sgname, addr:addr,sex:sex,genre:genre },
+		data:{atid:atid, sid:sid,cname:cname,mname:mname,sgname:sgname,by2:by2 },
 		success:function(data, stuts) {
 			data = parseInt(data);
 			if( data > 0 ){
-				sele();
+				
 				alert("添加成功");
 			}else if( data == -1 ){
 				alert("输入的信息不完整或请选择图片");

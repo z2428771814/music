@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.yc.music.bean.ApplicationTypeInfo;
 import com.yc.music.bean.CombinationInfo;
+import com.yc.music.bean.MusicInfo;
 import com.yc.music.bean.SingerInfo;
 import com.yc.music.bean.SongTypeInfo;
 import com.yc.music.mapper.ITypeChangeMapper;
@@ -141,6 +142,30 @@ public class TypeChangeServiceImpl implements ITypeChangeService {
 		map.put("pageNo", pageNo);
 		map.put("pageSize", pageSize);
 		return mapper.pagingCombinationInfo(map);
+	}
+
+
+	@Override
+	public int addMusicInfo(MusicInfo musicinfo, String sgname, String cname) {
+		if( sgname != "" || sgname != null ){
+			SingerInfo singerInfo=mapper.findbySingerInfoId(sgname);
+			if( singerInfo != null){
+				musicinfo.setSgid( singerInfo.getSgid()  );
+			}else{
+				return -1;
+			}
+		}else if( cname != "" || cname != null  ){
+			CombinationInfo combinationInfo=mapper.findByCombinationInfoId(cname);
+			if( combinationInfo!=null ){
+				musicinfo.setCid( combinationInfo.getCid() );
+			}else{
+				return -1;
+			}
+		}else{
+			return -1;
+		}
+		System.out.println( musicinfo );
+		return mapper.addMusicInfo(musicinfo);
 	}
 
 }
