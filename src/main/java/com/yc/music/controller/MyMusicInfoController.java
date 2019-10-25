@@ -2,11 +2,15 @@ package com.yc.music.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yc.music.bean.MusicInfo;
+import com.yc.music.bean.SongTypeInfo;
+import com.yc.music.bean.UserInfo;
 import com.yc.music.bean.UserListInfo;
 import com.yc.music.service.IMyMusicInfoService;
 import com.yc.music.util.StringUtil;
@@ -47,8 +51,48 @@ public class MyMusicInfoController {
 	 * @return
 	 */
 	@RequestMapping("/findSongList")
-	public List<UserListInfo> findSongList(Integer uid){
-		return service.findSongList(uid);
-		
+	public List<UserListInfo> findSongList(Integer uid,HttpSession session){
+		Object obj = session.getAttribute("loginUser");
+		if( obj == null ){
+			return null;
+		}
+		UserInfo ui = (UserInfo) obj;
+		return service.findSongList(ui.getUid());
+	}
+	
+	/**
+	 * 根据歌单id删除歌单
+	 * @param lid
+	 * @return
+	 */
+	@RequestMapping("/deleteGedan")
+	public int deleteGedan(Integer lid){
+		return service.deleteGedan(lid);
+	}
+	
+	/**
+	 * 获取歌单分类
+	 * @return
+	 */
+	@RequestMapping("/gedanType")
+	public List<SongTypeInfo> gedanType(){
+		return service.gedanType();
+	}
+	
+	/**
+	 * 创建歌单
+	 * @param lname
+	 * @param by1
+	 * @return
+	 */
+	@RequestMapping("/createGedan")
+	public int createGedan(UserListInfo ul ,Integer uid ,HttpSession session){
+		Object obj = session.getAttribute("loginUser");
+		if( obj == null ){
+			return -1;
+		}
+		UserInfo ui = (UserInfo) obj;
+		ul.setUid(ui.getUid());
+		return service.createGedan(ul);
 	}
 }

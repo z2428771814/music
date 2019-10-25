@@ -111,11 +111,11 @@ if(window.ActiveXObject || window.msIsStaticHTML){
             当前态 & hover 用 top_nav__link--current
             参考Im.qq.com的交互 
         -->
-			<ul class="mod_top_nav" role="nav">
+			<ul class="mod_top_nav" role="nav" >
 				<li class="top_nav__item"><a href="https://y.qq.com/"
 					class="top_nav__link" title="音乐馆">音乐馆</a></li>
 				<li class="top_nav__item"><a
-					href="https://y.qq.com/portal/profile.html"
+					href="gequ.html"
 					class="top_nav__link top_nav__link--current" title="我的音乐">我的音乐</a>
 				</li>
 				<li class="top_nav__item top_nav__item--subnav"><a
@@ -237,14 +237,7 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 			<div class="header__opt">
 
 				<!-- 未登录 -->
-				<span class="mod_top_login"> <a
-					class="top_login__link js_logined"
-					href="https://y.qq.com/portal/profile.html#stat=y_new.top.user_pic"
-					onclick="setStatCookie&amp;&amp;setStatCookie();" style=""><img
-						src="image/touxiang.jpg"
-						onerror="this.src=&#39;//y.gtimg.cn/mediastyle/global/img/person_300.png?max_age=2592000&#39;;this.onerror=null;"
-						class="top_login__cover js_user_img"><img
-						src="image/login_qq.png" class="top_login__icon"></a> <a
+				<span class="mod_top_login" id="login_TOp"> <a
 					class="top_login__link js_login" data-stat="y_new.top.login"
 					href="javascript:;" style="display: none;"> 登录 </a> <a
 					class="login__link header__link js_login"
@@ -281,14 +274,12 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 							<div class="popup_user_data__lv">
 								<a href="https://y.qq.com/portal/vipportal/index.html"
 									class="js_vip_jump" data-stat="y_new.top.pop.vip_icon"
-									rel="noopener" target="_blank"><img
-									src="image/svip_g.png" alt="绿钻"
-									class="popup_user_data__lv_icon"></a><a
+									rel="noopener" target="_blank"><img src="image/svip_g.png"
+									alt="绿钻" class="popup_user_data__lv_icon"></a><a
 									href="https://y.qq.com/vip/fufeibao/index.html"
 									class="js_vip_jump" data-stat="y_new.top.pop.vip_icon"
-									rel="noopener" target="_blank"><img
-									src="image/sui_g.png" alt="付费音乐包"
-									class="popup_user_data__lv_icon"></a>
+									rel="noopener" target="_blank"><img src="image/sui_g.png"
+									alt="付费音乐包" class="popup_user_data__lv_icon"></a>
 							</div>
 						</div>
 					</div>
@@ -354,8 +345,8 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 					alt="沐染" class="profile__cover" id="profileHead">
 			</div>
 			<h1 class="profile__tit">
-				<input type="hidden" name="uid" id="uid" value="">
-				<span class="profile__name">沐染</span><a
+				<input type="hidden" name="uid" id="uid" value=""> <span
+					class="profile__name">沐染</span><a
 					href="https://y.qq.com/portal/vipportal/index.html"
 					rel="noopener nofollow" target="_blank"><img
 					src="image/svip_g@2x.png" class="lv_icon"></a>
@@ -390,7 +381,7 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 			<a class="mod_tab__item" href="javascript:;" id="buy_tab"
 				data-tab="buy" data-stat="y_new.profile.tab.digital_album"
 				style="display: none;">我的已购</a> <a class="mod_tab__item"
-				href="javascript:;" id="create_tab" data-tab="create"
+				href="cjgedan.html" id="create_tab" data-tab="create"
 				data-stat="y_new.profile.tab.create_playlist">我创建的歌单</a> <a
 				class="mod_tab__item" href="javascript:;" id="focus_tab"
 				data-tab="focus" data-stat="y_new.profile.tab.focus">关注</a> <a
@@ -404,16 +395,16 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 		</div>
 
 		<div class="js_box" id="like_box" style="display: block;">
-			<div class="mod_tab" role="nav">
+			<div class="mod_tab" role="nav" id="nav">
 				<a class="mod_tab__item" href="gequ.html" data-tab="like_song"
-					data-stat="y_new.profile.like.tab.song">歌曲 21</a> <a
+					data-stat="y_new.profile.like.tab.song">歌曲</a> <a
 					class="mod_tab__item mod_tab__current" href="gedan.html"
 					data-tab="like_playlist"
-					data-stat="y_new.profile.like.tab.playlist">歌单 3</a> <a
+					data-stat="y_new.profile.like.tab.playlist">歌单 </a> <a
 					class="mod_tab__item" href="zhuanji.html" data-tab="like_album"
-					data-stat="y_new.profile.like.tab.album">专辑 1</a> <a
+					data-stat="y_new.profile.like.tab.album">专辑 </a> <a
 					class="mod_tab__item" href="javascript:;" data-tab="like_mv"
-					data-stat="y_new.profile.like.tab.mv">视频 0</a>
+					data-stat="y_new.profile.like.tab.mv">视频 </a>
 			</div>
 			<div class="profile_cont">
 				<div class="js_sub" id="like_song_box" style="display: none;">
@@ -444,17 +435,6 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 					</div>
 				</div>
 				<div class="js_sub" style="" id="like_playlist_box">
-					<div class="style_switch" aria-label="排列方式">
-						<a href="javascript:;" class="style_switch__item" title="上图下文"
-							data-type="mod_playlist" data-tab="like_playlist"
-							data-stat="y_new.profile.like.playlist.pic_mod"><i
-							class="icon_style_pic sprite"></i><span class="icon_txt">上图下文</span></a>
-						<a href="javascript:;"
-							class="style_switch__item style_switch__item--select" title="列表"
-							data-type="mod_playlist_text" data-tab="like_playlist"
-							data-stat="y_new.profile.like.playlist.list_mod"><i
-							class="icon_style_list sprite"></i><span class="icon_txt">列表</span></a>
-					</div>
 
 					<div class="mod_playlist_text js_list" style="display:;">
 						<ul class="playlist__header">
@@ -463,172 +443,31 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 							<li class="playlist__header_author">创建人</li>
 							<li class="playlist__header_other">收听</li>
 						</ul>
-						<ul class="playlist__list">
-
-
-							<li class="playlist__item" data-disstid="1033778404"
-								onmouseover="this.className=(this.className+&#39; playlist__item--hover&#39;)"
-								onmouseout="this.className=this.className.replace(/ playlist__item--hover/, &#39;&#39;)">
-								<div class="playlist__cover">
-
-
-									<a href="https://y.qq.com/n/yqq/playlist/1033778404.html"
-										class="js_playlist" data-disstid="1033778404"> <img
-										src="image/300.jpg"
-										onerror="this.src=&#39;//y.gtimg.cn/mediastyle/global/img/cover_playlist.png?max_age=31536000&#39;;this.onerror=null;"
-										alt="伤感旋律带给你不眠之夜" class="playlist__pic">
-
-									</a>
-
-								</div>
-								<h4 class="playlist__title">
-									<span class="playlist__title_txt"> <a
-										href="https://y.qq.com/n/yqq/playlist/1033778404.html"
-										class="js_playlist" data-disstid="1033778404"
-										title="伤感旋律带给你不眠之夜">伤感旋律带给你不眠之夜</a>
-
-									</span>
-								</h4>
-								<div class="mod_list_menu">
-
-									<a href="javascript:;"
-										class="list_menu__item list_menu__play js_play"
-										data-stat="y_new.profile.like.playlist.play" title="播放"> <i
-										class="list_menu__icon_play"></i> <span class="icon_txt">播放</span>
-									</a> <a href="javascript:;"
-										class="list_menu__item list_menu__add js_fav" title="添加到歌单">
-										<i class="list_menu__icon_add"></i> <span class="icon_txt">添加到歌单</span>
-									</a> <a href="javascript:;"
-										class="list_menu__item list_menu__down js_down" title="下载">
-										<i class="list_menu__icon_down"></i> <span class="icon_txt">下载</span>
-									</a> <a href="javascript:;"
-										class="list_menu__item list_menu__share js_share" title="分享">
-										<i class="list_menu__icon_share"></i> <span class="icon_txt">分享</span>
-									</a>
-
-								</div>
-								<div class="playlist__number">38首</div>
-								<div class="playlist__author">
-									<a title="JerRol Studio (好货找我)" class="js_user"
-										href="https://y.qq.com/portal/profile.html?uin=NeEA7iCPoK65"
-										data-uin="NeEA7iCPoK65">JerRol Studio (好货找我)</a>
-								</div>
-								<div class="playlist__other">239.3万</div> <a href="javascript:;"
-								class="playlist__delete js_delfav_gedan" data-id="1033778404"><span
-									class="icon_txt">删除</span></a>
-							</li>
-
-
-
-							<li
-								class="playlist__item playlist__item--even  playlist__item--hover"
-								data-disstid="723006502"
-								onmouseover="this.className=(this.className+&#39; playlist__item--hover&#39;)"
-								onmouseout="this.className=this.className.replace(/ playlist__item--hover/, &#39;&#39;)">
-								<div class="playlist__cover">
-
-
-									<a href="https://y.qq.com/n/yqq/playlist/723006502.html"
-										class="js_playlist" data-disstid="723006502"> <img
-										src="image/300.jpg"
-										onerror="this.src=&#39;//y.gtimg.cn/mediastyle/global/img/cover_playlist.png?max_age=31536000&#39;;this.onerror=null;"
-										alt="心灵鸡汤，温暖你我~" class="playlist__pic">
-
-									</a>
-
-								</div>
-								<h4 class="playlist__title">
-									<span class="playlist__title_txt"> <a
-										href="https://y.qq.com/n/yqq/playlist/723006502.html"
-										class="js_playlist" data-disstid="723006502"
-										title="心灵鸡汤，温暖你我~">心灵鸡汤，温暖你我~</a>
-
-									</span>
-								</h4>
-								<div class="mod_list_menu">
-
-									<a href="javascript:;"
-										class="list_menu__item list_menu__play js_play"
-										data-stat="y_new.profile.like.playlist.play" title="播放"> <i
-										class="list_menu__icon_play"></i> <span class="icon_txt">播放</span>
-									</a> <a href="javascript:;"
-										class="list_menu__item list_menu__add js_fav" title="添加到歌单">
-										<i class="list_menu__icon_add"></i> <span class="icon_txt">添加到歌单</span>
-									</a> <a href="javascript:;"
-										class="list_menu__item list_menu__down js_down" title="下载">
-										<i class="list_menu__icon_down"></i> <span class="icon_txt">下载</span>
-									</a> <a href="javascript:;"
-										class="list_menu__item list_menu__share js_share" title="分享">
-										<i class="list_menu__icon_share"></i> <span class="icon_txt">分享</span>
-									</a>
-
-								</div>
-								<div class="playlist__number">29首</div>
-								<div class="playlist__author">
-									<a title="冬狩" class="js_user"
-										href="https://y.qq.com/portal/profile.html?uin=oKv5own57eozon**"
-										data-uin="oKv5own57eozon**">冬狩</a>
-								</div>
-								<div class="playlist__other">30.8万</div> <a href="javascript:;"
-								class="playlist__delete js_delfav_gedan" data-id="723006502"><span
-									class="icon_txt">删除</span></a>
-							</li>
-
-
-
-							<li class="playlist__item" data-disstid="2893796936"
-								onmouseover="this.className=(this.className+&#39; playlist__item--hover&#39;)"
-								onmouseout="this.className=this.className.replace(/ playlist__item--hover/, &#39;&#39;)">
-								<div class="playlist__cover">
-
-
-									<a href="https://y.qq.com/n/yqq/playlist/2893796936.html"
-										class="js_playlist" data-disstid="2893796936"> <img
-										src="image/300.jpg"
-										onerror="this.src=&#39;//y.gtimg.cn/mediastyle/global/img/cover_playlist.png?max_age=31536000&#39;;this.onerror=null;"
-										alt="一曲一人心" class="playlist__pic">
-
-									</a>
-
-								</div>
-								<h4 class="playlist__title">
-									<span class="playlist__title_txt"> <a
-										href="https://y.qq.com/n/yqq/playlist/2893796936.html"
-										class="js_playlist" data-disstid="2893796936" title="一曲一人心">一曲一人心</a>
-
-									</span>
-								</h4>
-								<div class="mod_list_menu">
-
-									<a href="javascript:;"
-										class="list_menu__item list_menu__play js_play"
-										data-stat="y_new.profile.like.playlist.play" title="播放"> <i
-										class="list_menu__icon_play"></i> <span class="icon_txt">播放</span>
-									</a> <a href="javascript:;"
-										class="list_menu__item list_menu__add js_fav" title="添加到歌单">
-										<i class="list_menu__icon_add"></i> <span class="icon_txt">添加到歌单</span>
-									</a> <a href="javascript:;"
-										class="list_menu__item list_menu__down js_down" title="下载">
-										<i class="list_menu__icon_down"></i> <span class="icon_txt">下载</span>
-									</a> <a href="javascript:;"
-										class="list_menu__item list_menu__share js_share" title="分享">
-										<i class="list_menu__icon_share"></i> <span class="icon_txt">分享</span>
-									</a>
-
-								</div>
-								<div class="playlist__number">17首</div>
-								<div class="playlist__author">
-									<a title="花牌(Flower_Card)" class="js_user"
-										href="https://y.qq.com/portal/profile.html?uin=oK-l7enA7wEq7z**"
-										data-uin="oK-l7enA7wEq7z**">花牌(Flower_Card)</a>
-								</div>
-								<div class="playlist__other">224</div> <a href="javascript:;"
-								class="playlist__delete js_delfav_gedan" data-id="2893796936"><span
-									class="icon_txt">删除</span></a>
-							</li>
-
-
+						
+						<ul class="playlist__list" id="gedan">
+							
 						</ul>
+						
+						<div id="addr_div">
+							<img  src="image/close.png" title="关闭" onclick="hiddenDiv()"/>
+							<form id="myform">
+								<ul>
+									<li>
+										<h1>QQ音乐提醒您</h1>
+									</li>
+									<li style="font-size: 15px; padding: 0% 10% 0% 10%;">
+										下载歌曲需要在QQ音乐客户端操作!使用QQ音乐客户端获得高品质完整体验。
+									</li>
+									<li style="color:#B0B0B0;">
+										若您未安装QQ音乐客户端请先安装。
+									</li>
+									<li class="addr_btn">
+										<a href="javascript:downloads();" >下载客户端</a>
+									</li>
+								</ul>
+							</form>
+		  				</div>
+						
 					</div>
 
 					<div class="mod_playlist js_list" style="display: none;">
@@ -1034,16 +873,72 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 	<script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="js/basic2.js"></script>
 	<script type="text/javascript">
+	    
 		$(function(){
-			var uid = $("#uid").val();
-			// 根据用户编号查询用户的歌单
-			$.post("../myMusic/findSongList",{uid:uid},function(data){
-				console.log(data);
-			},"json")
+			findSongList();
 		})
+		
+			//显示歌单
+			function findSongList(){
+				var str = "";
+				// 根据用户编号查询用户的歌单
+				$.post("../myMusic/findSongList",null,function(data){
+					console.log(data);
+					$.each(data,function(index,item){
+					str += '<li class="playlist__item" lid="'+ item.lid +'"';
+					str += 'onmouseover="this.className=(this.className+&#39; playlist__item--hover&#39;)"';
+					str += 'onmouseout="this.className=this.className.replace(/ playlist__item--hover/, &#39;&#39;)">';
+					str += '<div class="playlist__cover"><a href="" class="js_playlist" data-disstid="1033778404">';
+					str += '<img src="image/300.jpg" onerror="this.src=&#39;//y.gtimg.cn/mediastyle/global/img/cover_playlist.png?max_age=31536000&#39;;this.onerror=null;"';
+					str += 'alt="伤感旋律带给你不眠之夜" class="playlist__pic">';
+					str += '</a></div><h4 class="playlist__title"><span class="playlist__title_txt"> ';
+					str += '<a href="" class="js_playlist" data-disstid="1033778404"';
+					str += 'title="伤感旋律带给你不眠之夜">'+ item.lname +'</a></span></h4><div class="mod_list_menu">';
+					str += '<a href="javascript:;" class="list_menu__item list_menu__play js_play"';
+					str += 'data-stat="y_new.profile.like.playlist.play" title="播放"> ';
+					str += '<i class="list_menu__icon_play"></i> <span class="icon_txt">播放</span></a>';
+					str += '<a href="javascript:;" class="list_menu__item list_menu__add js_fav" title="添加到歌单">';
+					str += '<i class="list_menu__icon_add"></i> <span class="icon_txt">添加到歌单</span></a> ';
+					str += '<a href="javascript:showUpload();" class="list_menu__item list_menu__down js_down" title="下载">';
+					str += '<i class="list_menu__icon_down"></i> <span class="icon_txt">下载</span></a> ';
+					str += '<a href="javascript:;" class="list_menu__item list_menu__share js_share" title="分享">';
+					str += '<i class="list_menu__icon_share"></i> <span class="icon_txt">分享</span></a></div>'; 
+					str += '<div class="playlist__number">'+ item.num +'首</div><div class="playlist__author">';
+					str += '<a title="JerRol Studio (好货找我)" class="js_user" href=""';
+					str += 'data-uin="NeEA7iCPoK65">'+ item.uname +'</a></div>';
+					str += '<div class="playlist__other">'+ item.by2 +'</div> <a href="javascript:deleteGedan('+item.lid+');"';
+					str += 'class="playlist__delete js_delfav_gedan" data-id="1033778404"><span class="icon_txt">删除</span></a></li>';
+					})
+					$("#gedan").html("").append($(str));	
+					
+				},"json")
+			}
+		
+			
+			// 显示下载提示框
+			function showUpload(){
+				$("#addr_div").css("display","block");
+			}
+			
+			// 关闭下载提示框
+			function hiddenDiv(){
+				$("#addr_div").css("display","none");
+			}
+			
+			// 根据歌单id删除歌单
+			function deleteGedan(lid){
+				$.post("../myMusic/deleteGedan",{lid:lid},function(data){
+						if( data == 1 ){
+							alert("删除成功!");
+							findSongList();
+						} else{
+							alert("删除失败!")
+						}
+				})
+			}
 	</script>
 
-	<a href=".mod_tab" class="btn_bottom_top sprite_before js_btn_top"><span
+	<a href="#nav" class="btn_bottom_top sprite_before js_btn_top"><span
 		class="icon_txt">返回顶部</span></a>
 	<a href="javascript:;" class="btn_bottom_feedback js_btn_feedback">反馈</a>
 	<a href="javascript:;"
