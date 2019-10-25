@@ -875,40 +875,45 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 	<script type="text/javascript">
 	    
 		$(function(){
-			
-			var str = "";
-			// 根据用户编号查询用户的歌单
-			$.post("../myMusic/findSongList",null,function(data){
-				console.log(data);
-				$.each(data,function(index,item){
-				str += '<li class="playlist__item" lid="'+ item.lid +'"';
-				str += 'onmouseover="this.className=(this.className+&#39; playlist__item--hover&#39;)"';
-				str += 'onmouseout="this.className=this.className.replace(/ playlist__item--hover/, &#39;&#39;)">';
-				str += '<div class="playlist__cover"><a href="" class="js_playlist" data-disstid="1033778404">';
-				str += '<img src="image/300.jpg" onerror="this.src=&#39;//y.gtimg.cn/mediastyle/global/img/cover_playlist.png?max_age=31536000&#39;;this.onerror=null;"';
-				str += 'alt="伤感旋律带给你不眠之夜" class="playlist__pic">';
-				str += '</a></div><h4 class="playlist__title"><span class="playlist__title_txt"> ';
-				str += '<a href="" class="js_playlist" data-disstid="1033778404"';
-				str += 'title="伤感旋律带给你不眠之夜">'+ item.lname +'</a></span></h4><div class="mod_list_menu">';
-				str += '<a href="javascript:;" class="list_menu__item list_menu__play js_play"';
-				str += 'data-stat="y_new.profile.like.playlist.play" title="播放"> ';
-				str += '<i class="list_menu__icon_play"></i> <span class="icon_txt">播放</span></a>';
-				str += '<a href="javascript:;" class="list_menu__item list_menu__add js_fav" title="添加到歌单">';
-				str += '<i class="list_menu__icon_add"></i> <span class="icon_txt">添加到歌单</span></a> ';
-				str += '<a href="javascript:showUpload();" class="list_menu__item list_menu__down js_down" title="下载">';
-				str += '<i class="list_menu__icon_down"></i> <span class="icon_txt">下载</span></a> ';
-				str += '<a href="javascript:;" class="list_menu__item list_menu__share js_share" title="分享">';
-				str += '<i class="list_menu__icon_share"></i> <span class="icon_txt">分享</span></a></div>'; 
-				str += '<div class="playlist__number">'+ item.num +'首</div><div class="playlist__author">';
-				str += '<a title="JerRol Studio (好货找我)" class="js_user" href=""';
-				str += 'data-uin="NeEA7iCPoK65">'+ item.uname +'</a></div>';
-				str += '<div class="playlist__other">'+ item.by2 +'</div> <a href="javascript:deleteGedan('+item.lid+');"';
-				str += 'class="playlist__delete js_delfav_gedan" data-id="1033778404"><span class="icon_txt">删除</span></a></li>';
-				})
-				$("#gedan").append($(str));	
-				
-			},"json")
+			findSongList();
 		})
+		
+			//显示歌单
+			function findSongList(){
+				var str = "";
+				// 根据用户编号查询用户的歌单
+				$.post("../myMusic/findSongList",null,function(data){
+					console.log(data);
+					$.each(data,function(index,item){
+					str += '<li class="playlist__item" lid="'+ item.lid +'"';
+					str += 'onmouseover="this.className=(this.className+&#39; playlist__item--hover&#39;)"';
+					str += 'onmouseout="this.className=this.className.replace(/ playlist__item--hover/, &#39;&#39;)">';
+					str += '<div class="playlist__cover"><a href="" class="js_playlist" data-disstid="1033778404">';
+					str += '<img src="image/300.jpg" onerror="this.src=&#39;//y.gtimg.cn/mediastyle/global/img/cover_playlist.png?max_age=31536000&#39;;this.onerror=null;"';
+					str += 'alt="伤感旋律带给你不眠之夜" class="playlist__pic">';
+					str += '</a></div><h4 class="playlist__title"><span class="playlist__title_txt"> ';
+					str += '<a href="" class="js_playlist" data-disstid="1033778404"';
+					str += 'title="伤感旋律带给你不眠之夜">'+ item.lname +'</a></span></h4><div class="mod_list_menu">';
+					str += '<a href="javascript:;" class="list_menu__item list_menu__play js_play"';
+					str += 'data-stat="y_new.profile.like.playlist.play" title="播放"> ';
+					str += '<i class="list_menu__icon_play"></i> <span class="icon_txt">播放</span></a>';
+					str += '<a href="javascript:;" class="list_menu__item list_menu__add js_fav" title="添加到歌单">';
+					str += '<i class="list_menu__icon_add"></i> <span class="icon_txt">添加到歌单</span></a> ';
+					str += '<a href="javascript:showUpload();" class="list_menu__item list_menu__down js_down" title="下载">';
+					str += '<i class="list_menu__icon_down"></i> <span class="icon_txt">下载</span></a> ';
+					str += '<a href="javascript:;" class="list_menu__item list_menu__share js_share" title="分享">';
+					str += '<i class="list_menu__icon_share"></i> <span class="icon_txt">分享</span></a></div>'; 
+					str += '<div class="playlist__number">'+ item.num +'首</div><div class="playlist__author">';
+					str += '<a title="JerRol Studio (好货找我)" class="js_user" href=""';
+					str += 'data-uin="NeEA7iCPoK65">'+ item.uname +'</a></div>';
+					str += '<div class="playlist__other">'+ item.by2 +'</div> <a href="javascript:deleteGedan('+item.lid+');"';
+					str += 'class="playlist__delete js_delfav_gedan" data-id="1033778404"><span class="icon_txt">删除</span></a></li>';
+					})
+					$("#gedan").html("").append($(str));	
+					
+				},"json")
+			}
+		
 			
 			// 显示下载提示框
 			function showUpload(){
@@ -925,7 +930,7 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 				$.post("../myMusic/deleteGedan",{lid:lid},function(data){
 						if( data == 1 ){
 							alert("删除成功!");
-							window.location.reload();  //刷新当前页
+							findSongList();
 						} else{
 							alert("删除失败!")
 						}

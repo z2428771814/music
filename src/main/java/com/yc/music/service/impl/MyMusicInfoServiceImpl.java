@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yc.music.bean.MusicInfo;
+import com.yc.music.bean.SongTypeInfo;
 import com.yc.music.bean.UserListInfo;
 import com.yc.music.mapper.IMyMusicInfoMapper;
 import com.yc.music.service.IMyMusicInfoService;
+import com.yc.music.util.StringUtil;
 /**
  * 我的音乐
  * @author 沐十二
@@ -41,6 +43,21 @@ public class MyMusicInfoServiceImpl implements IMyMusicInfoService {
 	@Override
 	public int deleteGedan(Integer lid) {
 		return mapper.deleteGedan(lid);
+	}
+	
+	// 获取歌单分类
+	@Override
+	public List<SongTypeInfo> gedanType() {
+		return mapper.gedanType();
+	}
+
+	// 创建歌单
+	@Override
+	public int createGedan(UserListInfo ul ) {
+		if( StringUtil.checkNull(ul.getLname(),ul.getBy1()) ){
+			return -1;
+		}
+		return mapper.createGedan(ul);
 	}
 	
 	

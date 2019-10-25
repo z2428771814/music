@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yc.music.bean.MusicInfo;
+import com.yc.music.bean.SongTypeInfo;
 import com.yc.music.bean.UserInfo;
 import com.yc.music.bean.UserListInfo;
 import com.yc.music.service.IMyMusicInfoService;
@@ -56,7 +57,6 @@ public class MyMusicInfoController {
 			return null;
 		}
 		UserInfo ui = (UserInfo) obj;
-		System.out.println(ui.getUid());
 		return service.findSongList(ui.getUid());
 	}
 	
@@ -68,5 +68,31 @@ public class MyMusicInfoController {
 	@RequestMapping("/deleteGedan")
 	public int deleteGedan(Integer lid){
 		return service.deleteGedan(lid);
+	}
+	
+	/**
+	 * 获取歌单分类
+	 * @return
+	 */
+	@RequestMapping("/gedanType")
+	public List<SongTypeInfo> gedanType(){
+		return service.gedanType();
+	}
+	
+	/**
+	 * 创建歌单
+	 * @param lname
+	 * @param by1
+	 * @return
+	 */
+	@RequestMapping("/createGedan")
+	public int createGedan(UserListInfo ul ,Integer uid ,HttpSession session){
+		Object obj = session.getAttribute("loginUser");
+		if( obj == null ){
+			return -1;
+		}
+		UserInfo ui = (UserInfo) obj;
+		ul.setUid(ui.getUid());
+		return service.createGedan(ul);
 	}
 }

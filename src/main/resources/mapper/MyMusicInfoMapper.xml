@@ -25,4 +25,13 @@
 		delete from userlist where lid=#{_parameter};
 	</delete>
 	
+	<!-- 获取歌单的分类 -->
+	<select id="gedanType" parameterType="SongTypeInfo"  resultType="SongTypeInfo">
+		select stype from songtype;
+	</select>
+	
+	<!-- 创建歌单 -->
+	<insert id="createGedan" parameterType="UserlistInfo">
+	 	insert into userlist values( 0 , #{uid} , #{lname} , #{by1} , 0 , null);
+	</insert>
 </mapper>
