@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.ListModel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -166,6 +168,53 @@ public class TypeChangeServiceImpl implements ITypeChangeService {
 		}
 		System.out.println( musicinfo );
 		return mapper.addMusicInfo(musicinfo);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> findMusicInfo(Integer pageNo,Integer pageSize) {
+		Map<String, Object> map=new HashMap<String,Object>();
+		if( pageNo == 0 && pageSize == 0 ){
+			map.put("pageNo", null);
+			map.put("pageSize", null);
+			return mapper.findMusicInfo(map);
+		}else{
+			map.put("pageNo", (pageNo-1)*pageSize);
+			map.put("pageSize", pageSize);
+			return mapper.findMusicInfo(map);
+		}
+		
+	}
+
+
+	@Override
+	public Map<String, Object> findsMusicInfo(Integer pageNo, Integer pageSize) {
+		List<CombinationInfo> com=this.findCombinationInfo();
+		//这个是查询全部
+		List<Map<String, Object>> mu=this.findMusicInfo(0,0);
+		//这个是首页的分页查询
+		List<Map<String, Object>> music=this.findMusicInfo(pageNo,pageSize);
+		for( int i=0;i<music.size();i++ ){
+			int cid= (int) music.get(i).get("cid");
+			if( cid != 0 ){
+				String cname="";
+				for(int j=0;i<com.size();j++){
+					if( cid == com.get(j).getCid() ){
+						music.get(i).put("sgname",com.get(j).getCname() );
+					}
+				}
+			}
+		}
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("total", mu.size());
+		map.put("music", music);
+		return map;
+	}
+
+
+	@Override
+	public int deleteMusicInfo(MusicInfo musicInfo) {
+		return mapper.deleteMusicInfo(musicInfo);
 	}
 
 }

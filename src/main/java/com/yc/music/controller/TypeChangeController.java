@@ -1,17 +1,22 @@
 package com.yc.music.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.ListModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yc.music.bean.ApplicationTypeInfo;
 import com.yc.music.bean.CombinationInfo;
+import com.yc.music.bean.MusicInfo;
 import com.yc.music.bean.SingerInfo;
 import com.yc.music.bean.SongTypeInfo;
 import com.yc.music.service.IAdminService;
@@ -117,6 +122,18 @@ public class TypeChangeController {
 	@RequestMapping("/deleteCombinationInfo")
 	public int deleteCombinationInfo(CombinationInfo combinationinfo){
 		return service.deleteCombinationInfo(combinationinfo);
+	}
+	
+	//查询所有的歌曲
+	@RequestMapping("/findMusicInfo")
+	public Map<String, Object> findMusicInfo(HttpServletRequest request,Integer pageNo,Integer pageSize){
+		return service.findsMusicInfo(pageNo, pageSize);
+	}
+	
+	//删除单个的歌曲
+	@RequestMapping("/deleteMusicInfo")
+	public int deleteMusicInfo(MusicInfo musicInfo) {
+		return service.deleteMusicInfo(musicInfo);
 	}
 
 }
