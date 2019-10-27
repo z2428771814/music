@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.ListModel;
 
@@ -126,8 +127,8 @@ public class TypeChangeController {
 	
 	//查询所有的歌曲
 	@RequestMapping("/findMusicInfo")
-	public Map<String, Object> findMusicInfo(HttpServletRequest request,Integer pageNo,Integer pageSize){
-		return service.findsMusicInfo(pageNo, pageSize);
+	public Map<String, Object> findMusicInfo(HttpServletRequest request, HttpServletResponse response,Integer pageNo,Integer pageSize,String mname){
+		return service.findsMusicInfo(pageNo, pageSize,request,response,mname);
 	}
 	
 	//删除单个的歌曲
@@ -135,5 +136,7 @@ public class TypeChangeController {
 	public int deleteMusicInfo(MusicInfo musicInfo) {
 		return service.deleteMusicInfo(musicInfo);
 	}
+	
+
 
 }

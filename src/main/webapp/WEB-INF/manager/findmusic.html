@@ -8,13 +8,15 @@
 <script type="text/javascript" src="../zlj/back/js/admin.js"></script>
 <script type="text/javascript" src="../zlj/back/js/ajaxfileupload.js"></script>
 <script type="text/javascript">
+var m = new Map();
 var pageNo = 1;
 var pageSize = 6;
 var totalSize = 0;	//总大小
 var totalPage = 0;	//总页数
 $(sele())
 function sele(){
-	$.post("../TypeChange/findMusicInfo", { pageNo:pageNo, pageSize:pageSize}, function(data) {
+	var mname=$.trim( $("#mname").val() );
+	$.post("../TypeChange/findMusicInfo", { pageNo:pageNo, pageSize:pageSize,mname:mname}, function(data) {
 		console.log(data);
 		totalSize = data.total;
 		totalPage = Math.ceil(totalSize / pageSize);
@@ -23,9 +25,44 @@ function sele(){
 			str += "<tr><td>"+item.mid+"</td><td>"+item.sgname+"</td><td>"+item.atname+"</td>";
 			str += "<td>"+item.stype+"</td><td>"+item.rgdate+"</td><td>"+item.by2+"</td><td>"+item.mname+"</td>"
 		
-			str += '<td><audio src="../../../'+item.musicaddr+'" onclick="oclick()"   ontimeupdate="msci(this)"controls="controls" preload="auto"></audio></td>'
+			str += '<td><audio src="../../../'+item.musicaddr+'"    ontimeupdate="msci(this,\''+item.mid+'\')" controls="controls" preload="auto"></audio></td>'
 			str += '<td><img src="../../../'+item.pices+'" width="50px" height="50px" /></td>';
 			str += '<td><a href="javascript:dele('+item.mid+')">[删除]</a></td></tr>';
+			
+			
+			if( item.lyricaddr !=null && item.lyricaddr !="" ){
+				var lines = item.lyricaddr.split('\n'),
+				//用于匹配时间的正则表达式，匹配的结果类似[xx:xx.xx]
+				pattern = /\[\d{2}:\d{2}.\d{2}\]/g,
+				//保存最终结果的数组
+				result = [];
+
+				//去掉不含时间的行
+				while (!pattern.test(lines[0])) {
+					lines = lines.slice(1);
+				};
+				lines[lines.length - 1].length === 0 && lines.pop();
+				lines.forEach(function(v /*数组元素值*/ , i /*元素索引*/ , a /*数组本身*/ ) {
+			        //提取出时间[xx:xx.xx]
+			        var time = v.match(pattern),
+			            //提取歌词
+			            value = v.replace(pattern, '');
+			        //因为一行里面可能有多个时间，所以time有可能是[xx:xx.xx][xx:xx.xx][xx:xx.xx]的形式，需要进一步分隔
+			        time.forEach(function(v1, i1, a1) {
+			            //去掉时间里的中括号得到xx:xx.xx
+			            var t = v1.slice(1, -1).split(':');
+			            //将结果压入最终数组
+			            result.push([parseInt(t[0], 10) * 60 + parseFloat(t[1]), value]);
+			        });
+			    });
+			    //最后将结果数组中的元素按时间大小排序，以便保存之后正常显示歌词
+			    result.sort(function(a, b) {
+			        return a[0] - b[0];
+			    });
+			    m.set('\''+item.mid+'\'',result);
+			}
+			
+			
 		});
 		
 		$("#singer").html("").append($(str));
@@ -74,6 +111,21 @@ function upper(){
 	sele();
 }
 
+function msci(obj,mid){
+	//audio.currentTime//播放进度。
+	    //遍历所有歌词，看哪句歌词的时间与当然时间吻合
+       for (var i = 0, l = m.get('\''+mid+'\'').length; i < l; i++) {
+           if (obj.currentTime /*当前播放的时间*/ > m.get('\''+mid+'\'')[i][0]) {
+               //显示到页面
+               console.log( m.get('\''+mid+'\'')[i][1] );
+        	   $("#lyricContainer").val(m.get('\''+mid+'\'')[i][1]);
+           };
+       };
+   
+	
+}
+
+
 
 </script>
 </head>
@@ -83,12 +135,13 @@ function upper(){
 		<div class="box_border">
 			<div class="box_center">
 				<form id="myform">
-				查询歌手：<input type="text" id="sgname" class="input-text lh30" size="25"/>&nbsp;&nbsp;
-				<input type="button" name="button" class="btn btn82 btn_save2" onclick="add()" value="添加"/>&nbsp;&nbsp;
-				查询歌曲<input type="text" id="genre" class="input-text lh30" size="25"/>&nbsp;&nbsp;
+				
+				查询歌曲<input type="text" id="mname" class="input-text lh30" size="25"/>&nbsp;&nbsp;
 				
 				
-				<input type="button" name="button" class="btn btn82 btn_save2" onclick="add()" value="添加"/>&nbsp;&nbsp;
+				
+				<input type="button" name="button" class="btn btn82 btn_save2" onclick="sele()" value="查询"/>&nbsp;&nbsp;&nbsp;&nbsp;
+				歌词显示：<input type="text" id="lyricContainer" class="input-text lh30" size="70"  style="font-weight:bolder; color:Red;" disabled>&nbsp;&nbsp;
 				</form>
 			</div>
 		</div>
