@@ -134,11 +134,11 @@ CREATE TABLE `musicinfo` (
   `Lyricaddr` varchar(255) DEFAULT NULL,		--音乐歌词地址
   `judgestauts` int(11) DEFAULT NULL,			--播放的次数
   `status` int(11) DEFAULT NULL,				--歌曲状态（用于我喜欢）
-<<<<<<< HEAD
-=======
+
+
  'rgdate' datetime DEFAULT NULL,			--歌曲发行时间
 'by2'	varchar  DEFAULT NULL,   			--歌曲公司
->>>>>>> a2ab0e5fc3495bd82af9ca9f7b0dd2e8429be73e
+
   PRIMARY KEY (`mid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
