@@ -3,6 +3,11 @@ package com.yc.music.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.search.IntegerComparisonTerm;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.ListModel;
+
 import com.yc.music.bean.ApplicationTypeInfo;
 import com.yc.music.bean.CombinationInfo;
 import com.yc.music.bean.MusicInfo;
@@ -62,4 +67,12 @@ public interface ITypeChangeService {
 	//添加音乐
 	public int addMusicInfo(MusicInfo musicinfo,String sgname,String cname);
 	
+	//查询所有的歌曲
+	public List<Map<String, Object>> findMusicInfo(Integer pageNo,Integer pageSize,String mname);
+	
+	//封装我们的方法
+	public  Map<String, Object> findsMusicInfo(Integer pageNo,Integer pageSize,HttpServletRequest request, HttpServletResponse response,String mname);
+	
+	//删除单个的歌曲
+	public int deleteMusicInfo(MusicInfo musicInfo);
 }

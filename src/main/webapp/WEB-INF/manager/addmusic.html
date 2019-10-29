@@ -62,15 +62,15 @@
 						
 							<td class="td_right">歌曲图片：</td>
 							<td>
-								<input type="file" id="pic" name="pic" accept="img/*" class="input-text lh30" size="40" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
+								<input type="file" id="pic" name="pic" accept="image/*" class="input-text lh30" size="40" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
 							</td>
 							<td class="td_right">歌曲上传地址：</td>
 							<td>
-								<input type="file" id="mus" name="mus" accept="audio/mpeg" class="input-text lh30" size="40" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
+								<input type="file" id="mus" name="mus" accept="audio/mpeg" class="input-text lh30" size="40" multiple="multiple">
 							</td>
 							<td class="td_right">歌词播发地址：</td>
 							<td>
-								<input type="file" id="lyri" name="lyri"  class="input-text lh30" size="40" multiple="multiple" onchange="setImagePreviews(this,'showPics')">
+								<input type="file" id="lyri" name="lyri"  class="input-text lh30" size="40" multiple="multiple" >
 							</td>
 							<td></td>
 							<td></td>
@@ -82,7 +82,9 @@
 								
 								</div>
 							</td>
+							
 						</tr>
+						
 						
 						<tr>
 							<td colspan="10" align="center">
@@ -99,6 +101,7 @@
 <script type="text/javascript">
 
 
+
 $(function(){
 	$.post("../TypeChange/findApplicationType",null,function(data){
 		
@@ -110,6 +113,10 @@ $(function(){
 		$("#ApplicationType").html(str);
 	},"json");
 })
+
+
+
+
 function checkLawyerType(){
 	var atid=$("#ApplicationType").val();
 	if( atid == null ){

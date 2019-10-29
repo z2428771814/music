@@ -16,7 +16,7 @@ $(sele())
 function sele(){
 	$.post("../TypeChange/pagingSingerInfo", { pageNo:pageNo, pageSize:pageSize}, function(data) {
 		console.log(data);
-		totalSize = data.total+1;
+		totalSize = data.total;
 		totalPage = Math.ceil(totalSize / pageSize);
 		var str = "";
 		$.each(data.paging, function(index, item) {
@@ -82,6 +82,7 @@ function add(){
 function lower(){
 	console.log(pageNo+"--"+totalPage+"--"+totalSize);
 	if( (pageNo+1)>totalPage ){
+		pageNo = totalPage;
 		alert("当前已是最大页");
 		return;
 	}else{
@@ -93,7 +94,8 @@ function lower(){
 
 function upper(){
 	console.log(pageNo+"--"+totalPage+"--"+totalSize);
-	if( (pageNo-1)<0 ){
+	if( (pageNo-1)<=0 ){
+		pageNo = 1;
 		alert("当前已是最小页");
 		return;
 	}else{

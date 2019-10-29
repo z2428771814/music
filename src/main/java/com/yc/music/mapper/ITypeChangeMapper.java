@@ -3,6 +3,9 @@ package com.yc.music.mapper;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.ListModel;
+
+import org.junit.validator.PublicClassValidator;
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.data.redis.connection.ReactiveListCommands.LInsertCommand;
 
@@ -142,5 +145,17 @@ public interface ITypeChangeMapper {
 	 */
 	public CombinationInfo findByCombinationInfoId(String cname);
 	
+	/**
+	 * 查询所有的歌曲
+	 * @return
+	 */
+	public List<Map<String, Object>> findMusicInfo(Map<String,Object> map);
+	
+	/**
+	 * 删除单个歌曲
+	 * @param musicInfo
+	 * @return
+	 */
+	public int deleteMusicInfo(MusicInfo musicInfo);
 	
 }
