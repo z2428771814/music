@@ -68,6 +68,11 @@ function sele(){
 		$("#singer").html("").append($(str));
 	}, "json");
 	
+	$.post("../TypeChange/participle",null,function(data){
+		console.log(data);
+	},"json");
+
+	
 }
 
 

@@ -77,9 +77,7 @@
 	
 	<select id="findMusicInfo" parameterType="map" resultType="map" >
 		select mid,mname,m.pices,musicaddr,rgdate,a.atname,lyricaddr,m.cid,s.stype,m.by2,sg.sgname from musicinfo m, singerinfo sg,songtype s,applicationtype a where   m.sgid=sg.sgid  and  m.sid=s.sid  and m.atid=a.atid 
-			<if test="mname != null">
-				 and mname like '%${mname}%'
-			</if>
+		
 			<if test="pageNo != null">
 				 limit #{pageNo},#{pageSize}
 			</if>
