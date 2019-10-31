@@ -34,4 +34,33 @@
 	<insert id="createGedan" parameterType="UserlistInfo">
 	 	insert into userlist values( 0 , #{uid} , #{lname} , #{by1} , 0 , null);
 	</insert>
+	
+	<!-- 根据用户id查询歌手信息 -->
+	<select id="showSinger" parameterType="SingerInfo"  resultType="SingerInfo">
+		select sgid, sgname, num , by1 from singerinfo where status = 1 and by2 = #{uid};
+	</select>
+	
+	<!-- 更改歌手id取消关注 -->
+	<update id="unfollow" >
+		update singerinfo set status = 0 where sgid = #{sgid}
+	</update>
+	
+	<!-- 根据用户id查询歌单名字 -->
+	<select id="findGedanName" parameterType="UserlistInfo" resultType="UserListInfo">
+		select lname ,lid from userlist where uid=#{uid};
+	</select>
+	
+	<!-- 添加单个歌曲到歌单 -->
+	<insert id="AddSongToPlayList" parameterType="UserMusiceInfo">
+	 	insert into usermusic values( 0 , #{lid} , #{mid} , null , null , null);
+	</insert>
+	
+	<!-- 添加多个歌曲搭配歌单 -->
+	<!-- <insert id="AddSongsToPlayList" parameterType="Map">
+	 	insert into usermusic values( 0 , #{lid} , 
+			<foreach collection="mids"  separator=","  item="item">
+  				#{item}
+  			</foreach>
+		, null , null , null);
+	</insert> -->
 </mapper>

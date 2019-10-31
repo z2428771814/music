@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yc.music.bean.MusicInfo;
+import com.yc.music.bean.SingerInfo;
 import com.yc.music.bean.SongTypeInfo;
 import com.yc.music.bean.UserInfo;
 import com.yc.music.bean.UserListInfo;
+import com.yc.music.bean.UserMusiceInfo;
 import com.yc.music.service.IMyMusicInfoService;
 import com.yc.music.util.StringUtil;
 
@@ -94,5 +96,62 @@ public class MyMusicInfoController {
 		UserInfo ui = (UserInfo) obj;
 		ul.setUid(ui.getUid());
 		return service.createGedan(ul);
+	}
+	/**
+	 * 根据用户编号查找歌手信息
+	 * @param si
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/showSinger")
+	public List<SingerInfo> showSinger(Integer uid){
+		return service.showSinger(uid);
+	}
+	
+	/**
+	 * 根据歌手id取消关注
+	 * @param sgid
+	 * @return
+	 */
+	@RequestMapping("/unfollow")
+	public int unfollow(Integer sgid){
+		return service.unfollow(sgid);
+	}
+	
+	
+	// 根据用户id查询歌单的名字
+	@RequestMapping("/findGedanName")
+	public List<UserListInfo> findGedanName(UserListInfo ul ,Integer uid ,HttpSession session ){
+		Object obj = session.getAttribute("loginUser");
+		if( obj == null ){
+			return null;
+		}
+		UserInfo ui = (UserInfo) obj;
+		ul.setUid(ui.getUid());
+		return service.findGedanName(ul);
+		
+	}
+	
+	/**
+	 * 添加单个歌曲到歌单
+	 * @param umi
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/AddSongToPlayList")
+	public int AddSongToPlayList(UserMusiceInfo umi ){
+		return service.AddSongToPlayList(umi);
+	}
+	
+	/**
+	 * 添加多个歌曲到歌单
+	 * @param umi
+	 * @param mid
+	 * @return
+	 */
+	@RequestMapping("/AddSongsToPlayList")
+	public int AddSongsToPlayList(Integer lid , String mids){
+		return service.AddSongsToPlayList(lid, mids);
+		
 	}
 }
