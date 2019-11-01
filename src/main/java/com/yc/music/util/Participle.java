@@ -21,8 +21,10 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
@@ -75,7 +77,7 @@ public class Participle {
 			// 4. 创建索引配置对象(IndexWriterConfig), 用于配置Lucene
 			// 参数一:当前使用的Lucene版本, 参数二:分析器
 			IndexWriterConfig indexConfig = new IndexWriterConfig( Version.LUCENE_4_10_2, analyzer);
-
+			
 			tompath = request.getServletContext().getRealPath(""); //这个是获取服务器路径  D:\tomcat\apache-tomcat-8.5.41\webapps\music\
 			tompath=tompath.substring(0,(tompath.length()-6));
 			tompath=tompath.replace("\\", "\\")+"index";
@@ -97,8 +99,11 @@ public class Participle {
 			}
 			// 8. 释放资源
 			indexWriter.close();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
+		}finally {
+			
 		}
 	}
 
@@ -108,17 +113,24 @@ public class Participle {
 		// 1. 创建分析器对象(Analyzer), 用于分词
 		Analyzer analyzer = new StandardAnalyzer();
 
+		
+
+
+		String [] queries ={mname,mname};
+		String[] fields={"sgname","mname"};
+
 		// 2. 创建查询对象(Query)
 		// 2.1 创建查询解析器对象
 		// 参数一:默认的搜索域, 参数二:使用的分析器
-		QueryParser queryParser = new QueryParser("mname", analyzer);
-		
-		String selemname="mname:"+mname;
-		
+	//	QueryParser queryParser = new QueryParser("mname", analyzer);
+
+	//	String selemname="mname:"+mname;
+
 		// 2.2 使用查询解析器对象, 实例化Query对象
-		Query query = queryParser.parse(selemname);
-
-
+	//	Query query = queryParser.parse(selemname);
+		BooleanClause.Occur[] clauses = { BooleanClause.Occur.SHOULD, BooleanClause.Occur.SHOULD };  
+		  Query query = MultiFieldQueryParser.parse(queries, fields, clauses, new StandardAnalyzer());  
+		  
 
 		// 3. 创建索引库目录位置对象(Directory), 指定索引库位置
 		Directory directory = FSDirectory.open(new File(tompath));
@@ -138,17 +150,23 @@ public class Participle {
 		Highlighter highlight=new Highlighter(formatter,scorer);  
 		highlight.setTextFragmenter(fragmenter);  
 
+
+		//创建一个MulitFiledQueryParser对象
+
+
+
 		// 6. 使用IndexSearcher对象执行搜索, 返回搜索结果集TopDocs
 		// 参数一:使用的查询对象, 参数二:指定要返回的搜索结果排序后的前n个
-		TopDocs topDocs = searcher.search(query, 10);
-
-		List<Map<String, Object>> list=new ArrayList<Map<String, Object>>();
+		TopDocs topDocs = searcher.search(query, 30);
 		
+		List<Map<String, Object>> list=new ArrayList<Map<String, Object>>();
+
 		// 7. 处理结果集
 		// 7.1 打印实际查询到的结果数量
 		System.out.println("实际查询到的结果数量: " + topDocs.totalHits);
 		// 7.2 获取搜索的结果数组
 		// ScoreDoc中有文档的id及其评分
+		
 		ScoreDoc[] scoreDocs = topDocs.scoreDocs;
 		for (ScoreDoc scoreDoc : scoreDocs) {
 			System.out.println("= = = = = = = = = = = = = = = = = = =");
@@ -158,7 +176,7 @@ public class Participle {
 			System.out.println("文档id= " + docId + " , 评分= " + score);
 			// 根据文档Id, 查询文档数据 -- 相当于关系数据库中根据主键Id查询数据
 			Document doc = searcher.doc(docId);
-			
+
 			Map<String, Object> map=new HashMap<String, Object>();
 			map.put("mid", Integer.parseInt(doc.get("mid")));
 			map.put("pices", doc.get("pices"));
@@ -169,56 +187,76 @@ public class Participle {
 			map.put("cid", Integer.parseInt(doc.get("cid")));
 			map.put("stype", doc.get("stype"));
 			map.put("by2", doc.get("by2"));
-			map.put("sgname", doc.get("sgname"));
-			
-			
-			
+
+System.out.println( doc.get("mname")+"--"+doc.get("sgname") );
 			String str1="";
 			String value =doc.get("mname");  
 			if (value != null) {    
 				TokenStream tokenStream = analyzer.tokenStream("mname", new StringReader(value));    
 				str1 = highlight.getBestFragment(tokenStream, value);    
-			}    
-			map.put("mname", str1);
-			list.add(map);
+			}  
 			System.out.println("查询出人员:"+str1);  
 
+			if(  str1 != null  && !"null".equals(str1)  ){
+				map.put("mname", str1);
+			}else{
+				map.put("mname", doc.get("mname"));
+			}
+			
+			
+			
+			String str1s="";
+			String values =doc.get("sgname");  
+			if (value != null) {    
+				TokenStream tokenStreams = analyzer.tokenStream("sgname", new StringReader(values));    
+				str1s = highlight.getBestFragment(tokenStreams, values);    
+			}   
+			System.out.println( str1s );
+			if( str1s != null  && !"null".equals(str1s)   ){
+				map.put("sgname", str1s);
+			}else{
+				map.put("sgname", doc.get("sgname"));
+			}
+			System.out.println(map.get("mname")+"---??---"+map.get("sgname"));
+			list.add(map);
+			
 		}
+		indexReader.close();
 		return list;
 	}
-	
+
 	//返回总数
-    public  int check(HttpServletRequest request) {
-        IndexReader indexReader = null;
-        try {
-            Directory directory = FSDirectory.open(new File(tompath));
-            indexReader = IndexReader.open(directory);
-            // 通过reader可以有效的获取到文档的数量
-            int result=indexReader.numDocs();
-            // 有效的索引文档
-            System.out.println("有效的索引文档:" + indexReader.numDocs());
-            // 总共的索引文档
-            System.out.println("总共的索引文档:" + indexReader.maxDoc());
-            // 删掉的索引文档，其实不恰当，应该是在回收站里的索引文档
-            System.out.println("删掉的索引文档:" + indexReader.numDeletedDocs());
-            return result;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (indexReader != null) {
-                    indexReader.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+	public  int check(HttpServletRequest request) {
+		IndexReader indexReader = null;
+		try {
+			Directory directory = FSDirectory.open(new File(tompath));
+			indexReader = IndexReader.open(directory);
+			// 通过reader可以有效的获取到文档的数量
+			int result=indexReader.numDocs();
+			// 有效的索引文档
+			System.out.println("有效的索引文档:" + indexReader.numDocs());
+			// 总共的索引文档
+			System.out.println("总共的索引文档:" + indexReader.maxDoc());
+			// 删掉的索引文档，其实不恰当，应该是在回收站里的索引文档
+			System.out.println("删掉的索引文档:" + indexReader.numDeletedDocs());
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (indexReader != null) {
+					indexReader.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return 0;
-    }
-    
-    public static void delete(File file) {
+	}
+
+	public static void delete(File file) {
 		if(!file.exists()) return;
-		
+
 		if(file.isFile() || file.list()==null) {
 			file.delete();
 			System.out.println("删除了"+file.getName());
@@ -230,7 +268,7 @@ public class Participle {
 			file.delete();
 			System.out.println("删除了"+file.getName());
 		}
-		
+
 	}
-    
+
 }

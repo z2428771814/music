@@ -5,12 +5,17 @@
 <mapper namespace="com.yc.music.mapper.IMusicInfoMapper">
 	<!-- 查询所有地区  -->
 	<select id="findAddr" resultType="SingerInfo">
-		SELECT sgid, addr from singerinfo
+		SELECT sgid, addr from singerinfo GROUP BY addr ORDER BY sgid ASC
 	</select>
 	
 	<!-- 查询最新歌曲 -->
-	<select id="newSong" resultType="MusicInfo">
-		SELECT * from (SELECT mid, sgname, mname, pices, musicaddr from singerinfo, musicinfo where singerinfo.sgid=musicinfo.sgid  ORDER BY mid DESC LIMIT 10) as ab LIMIT 0,3
+	<select id="newSong" resultType="MusicInfo" parameterType="map">
+		SELECT * from (SELECT mid, sgname, mname, pices, musicaddr from singerinfo, musicinfo where singerinfo.sgid=musicinfo.sgid  ORDER BY mid DESC LIMIT #{total}) as ab LIMIT #{page},#{rows}
+	</select>
+	
+	<!-- 查询地区歌曲 -->
+	<select id="seleAddr" resultType="MusicInfo" parameterType="map">
+		SELECT * from (SELECT mid, sgname, mname, pices, musicaddr from singerinfo, musicinfo where singerinfo.sgid=musicinfo.sgid and singerinfo.addr = #{addr} ORDER BY mid DESC LIMIT #{total}) as ab LIMIT #{page},#{rows}
 	</select>
 	
 	<!-- 查询歌曲详细信息 -->
@@ -18,5 +23,86 @@
 		SELECT mid, mname, mi.by2, rgdate, pices, Lyricaddr, sgname, stype from musicinfo mi, singerinfo si, songtype st where mi.sgid = si.sgid and mi.sid=st.sid and mid = #{_parameter}
 	</select>
 	
+	<!-- 查询歌手类型 -->
+	<select id="singType" resultType="SingerInfo">
+		select sgid, genre from singerinfo GROUP BY genre
+	</select>
 	
+	<!-- 歌手展示 -->
+	<select id="singerShow" resultType="SingerInfo" parameterType="map">
+		SELECT sgid, sgname, by1 from singerinfo LIMIT #{page}, #{rows}
+	</select>
+	
+	<!-- 有多少歌手 -->
+	<select id="singerNum" resultType="int" >
+		select count(sgid) from singerinfo
+	</select>
+	
+	<!-- 根据字母查询数量 -->
+	<select id="letterNum" resultType="int" parameterType="map">
+		select COUNT(sgname) from singerinfo 
+		<where>
+			<if test="addr != null and addr != ''">
+				addr = #{addr} 
+			</if>
+			<if test="sex != null and sex != ''">
+				and sex = #{sex}
+			</if>
+			<if test="genre != null and genre != ''">
+				and genre = #{genre} 
+			</if>
+			<if test="start != null and start != ''">
+				and CONV(HEX(left(CONVERT(sgname USING gbk),1)),16,10) between #{start} 
+			</if>
+			<if test="stop != null and stop != ''">
+				and #{stop} 
+			</if>
+			<if test="let != null and let != ''">
+				or sgname like #{let} "%" 
+			</if>
+		</where> 
+		
+	</select>
+	
+	<!-- 根据字母查询歌手 -->
+	<select id="findlet" resultType="SingerInfo" parameterType="map">
+		select sgid, sgname, by1 from singerinfo 
+		<where>
+			<if test="addr != null and addr != ''">
+				addr = #{addr} 
+			</if>
+			<if test="sex != null and sex != ''">
+				and sex = #{sex}
+			</if>
+			<if test="genre != null and genre != ''">
+				and genre = #{genre} 
+			</if>
+			<if test="start != null and start != ''">
+				and CONV(HEX(left(CONVERT(sgname USING gbk),1)),16,10) between #{start} 
+			</if>
+			<if test="stop != null and stop != ''">
+				and #{stop}
+			</if>
+			<if test="let != null and let != ''">
+				or sgname like #{let} "%" 
+			</if>
+				
+		</where> 
+		LIMIT #{page},#{rows}
+	</select>
+	
+	<!-- 有多少地区歌手 -->
+	<select id="addrNum" resultType="int" parameterType="string">
+		select count(addr) as num from singerinfo where addr = #{_parameter}
+	</select>
+	
+	<!-- 查询地区歌手 -->
+	<select id="findAddrSinger" resultType="SingerInfo" parameterType="SingerInfo">
+		select sgid, sgname, by1 from singerinfo where addr = #{addr} LIMIT #{page} , #{rows}
+	</select>
+	
+	<!-- 根据性别查询歌手 -->
+	<select id="findSex" resultType="SingerInfo" parameterType="map">
+		SELECT sgid, sgname, by1 from singerinfo where sex = #{sex} LIMIT #{page}, #{rows}
+	</select>
 </mapper>

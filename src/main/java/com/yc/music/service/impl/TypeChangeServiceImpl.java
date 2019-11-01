@@ -178,7 +178,7 @@ public class TypeChangeServiceImpl implements ITypeChangeService {
 			}
 		}
 		System.out.println( musicinfo );
-		id=-1;
+		id=0;
 		return mapper.addMusicInfo(musicinfo);
 	}
 
@@ -298,7 +298,7 @@ public class TypeChangeServiceImpl implements ITypeChangeService {
 
 	@Override
 	public int deleteMusicInfo(MusicInfo musicInfo) {
-		id=-1;
+		id=0;
 		return mapper.deleteMusicInfo(musicInfo);
 	}
 
@@ -306,6 +306,13 @@ public class TypeChangeServiceImpl implements ITypeChangeService {
 	@Override
 	public List<Map<String, Object>> findpadd(HttpServletRequest request) {
 		if( id==0 ){
+			
+			String tompath = request.getServletContext().getRealPath(""); //这个是获取服务器路径  D:\tomcat\apache-tomcat-8.5.41\webapps\music\
+			tompath=tompath.substring(0,(tompath.length()-6));
+			tompath=tompath.replace("\\", "\\")+"index";
+			File file=new File(tompath);
+			Participle.delete(file);
+			
 			Map<String, Object> map=new HashMap<String,Object>();
 			map.put("pageNo", null);
 			map.put("pageSize", null);
@@ -313,14 +320,6 @@ public class TypeChangeServiceImpl implements ITypeChangeService {
 			Participle.addTo(list, request);
 			++id;
 			return list;
-		}else if( id == -1 ){
-			String tompath = request.getServletContext().getRealPath(""); //这个是获取服务器路径  D:\tomcat\apache-tomcat-8.5.41\webapps\music\
-			tompath=tompath.substring(0,(tompath.length()-6));
-			tompath=tompath.replace("\\", "\\")+"index";
-			File file=new File(tompath);
-			Participle.delete(file);
-			id=0;
-			return null;
 		}
 		return null;
 		
