@@ -124,19 +124,26 @@ public class TypeChangeController {
 	public int deleteCombinationInfo(CombinationInfo combinationinfo){
 		return service.deleteCombinationInfo(combinationinfo);
 	}
-	
+
 	//查询所有的歌曲
 	@RequestMapping("/findMusicInfo")
 	public Map<String, Object> findMusicInfo(HttpServletRequest request, HttpServletResponse response,Integer pageNo,Integer pageSize,String mname){
 		return service.findsMusicInfo(pageNo, pageSize,request,response,mname);
 	}
-	
+
 	//删除单个的歌曲
 	@RequestMapping("/deleteMusicInfo")
 	public int deleteMusicInfo(MusicInfo musicInfo) {
 		return service.deleteMusicInfo(musicInfo);
 	}
-	
+
+	//查询所有的歌曲
+	@RequestMapping("/participle")
+	public int participle(HttpServletRequest request){
+		List<Map<String, Object>> list=service.findpadd(request);
+		return 1;
+	}
+
 
 
 }

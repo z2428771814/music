@@ -15,6 +15,9 @@ var totalSize = 0;	//总大小
 var totalPage = 0;	//总页数
 $(sele())
 function sele(){
+	
+	
+	
 	var mname=$.trim( $("#mname").val() );
 	$.post("../TypeChange/findMusicInfo", { pageNo:pageNo, pageSize:pageSize,mname:mname}, function(data) {
 		console.log(data);
@@ -67,6 +70,10 @@ function sele(){
 		
 		$("#singer").html("").append($(str));
 	}, "json");
+	
+	$.post("../TypeChange/participle",null,function(data){
+		console.log(data);
+	},"json");
 	
 }
 

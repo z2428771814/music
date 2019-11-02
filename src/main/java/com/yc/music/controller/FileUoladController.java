@@ -105,13 +105,10 @@ public class FileUoladController {
 	}
 	
 	
-	//添加组合图片和组合
+	//添加歌曲图片
 	@RequestMapping("/addMusicInfo")
 	public int addMusicInfo(@RequestParam("pic")MultipartFile pic,@RequestParam("mus")MultipartFile mus,@RequestParam("lyri")MultipartFile lyri,HttpServletRequest request,MusicInfo musicinfo,String cname,String sgname ){
 		if( pic.isEmpty()  || mus.isEmpty() || lyri.isEmpty() ){
-			return -1;
-		}
-		if( cname == "" && cname != null  && sgname != "" && sgname != null ){
 			return -1;
 		}
 		try {

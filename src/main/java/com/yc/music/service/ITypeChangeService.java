@@ -68,11 +68,14 @@ public interface ITypeChangeService {
 	public int addMusicInfo(MusicInfo musicinfo,String sgname,String cname);
 	
 	//查询所有的歌曲
-	public List<Map<String, Object>> findMusicInfo(Integer pageNo,Integer pageSize,String mname);
+	public List<Map<String, Object>> findMusicInfo(Integer pageNo,Integer pageSize,String mname,HttpServletRequest request);
 	
 	//封装我们的方法
 	public  Map<String, Object> findsMusicInfo(Integer pageNo,Integer pageSize,HttpServletRequest request, HttpServletResponse response,String mname);
 	
 	//删除单个的歌曲
 	public int deleteMusicInfo(MusicInfo musicInfo);
+	
+	//把我们的所有的歌曲全部加载进我们的tomcat里面去
+	public List<Map<String, Object>> findpadd(HttpServletRequest request);
 }
