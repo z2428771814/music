@@ -15,72 +15,112 @@ public class SingerInfo implements Serializable {
 	private String by1;
 	private String by2;
 	private String by3;
+	
+	private int uid;
+
+	@Override
+	public String toString() {
+		return "SingerInfo [sgid=" + sgid + ", sgname=" + sgname + ", addr=" + addr + ", sex=" + sex + ", genre="
+				+ genre + ", status=" + status + ", cid=" + cid + ", num=" + num + ", by1=" + by1 + ", by2=" + by2
+				+ ", by3=" + by3 + ", uid=" + uid + "]";
+	}
+
 	public int getSgid() {
 		return sgid;
 	}
+
 	public void setSgid(int sgid) {
 		this.sgid = sgid;
 	}
+
 	public String getSgname() {
 		return sgname;
 	}
+
 	public void setSgname(String sgname) {
 		this.sgname = sgname;
 	}
+
 	public String getAddr() {
 		return addr;
 	}
+
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
+
 	public String getSex() {
 		return sex;
 	}
+
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
+
 	public String getGenre() {
 		return genre;
 	}
+
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
+
 	public int getStatus() {
 		return status;
 	}
+
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
 	public int getCid() {
 		return cid;
 	}
+
 	public void setCid(int cid) {
 		this.cid = cid;
 	}
+
 	public int getNum() {
 		return num;
 	}
+
 	public void setNum(int num) {
 		this.num = num;
 	}
+
 	public String getBy1() {
 		return by1;
 	}
+
 	public void setBy1(String by1) {
 		this.by1 = by1;
 	}
+
 	public String getBy2() {
 		return by2;
 	}
+
 	public void setBy2(String by2) {
 		this.by2 = by2;
 	}
+
 	public String getBy3() {
 		return by3;
 	}
+
 	public void setBy3(String by3) {
 		this.by3 = by3;
 	}
+
+	public int getUid() {
+		return uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -96,8 +136,10 @@ public class SingerInfo implements Serializable {
 		result = prime * result + sgid;
 		result = prime * result + ((sgname == null) ? 0 : sgname.hashCode());
 		result = prime * result + status;
+		result = prime * result + uid;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -150,16 +192,13 @@ public class SingerInfo implements Serializable {
 			return false;
 		if (status != other.status)
 			return false;
+		if (uid != other.uid)
+			return false;
 		return true;
 	}
-	@Override
-	public String toString() {
-		return "SingerInfo [sgid=" + sgid + ", sgname=" + sgname + ", addr=" + addr + ", sex=" + sex + ", genre="
-				+ genre + ", status=" + status + ", cid=" + cid + ", num=" + num + ", by1=" + by1 + ", by2=" + by2
-				+ ", by3=" + by3 + "]";
-	}
+
 	public SingerInfo(int sgid, String sgname, String addr, String sex, String genre, int status, int cid, int num,
-			String by1, String by2, String by3) {
+			String by1, String by2, String by3, int uid) {
 		super();
 		this.sgid = sgid;
 		this.sgname = sgname;
@@ -172,11 +211,14 @@ public class SingerInfo implements Serializable {
 		this.by1 = by1;
 		this.by2 = by2;
 		this.by3 = by3;
+		this.uid = uid;
 	}
+
 	public SingerInfo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 	
 }

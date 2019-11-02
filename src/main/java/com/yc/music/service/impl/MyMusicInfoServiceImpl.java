@@ -66,8 +66,8 @@ public class MyMusicInfoServiceImpl implements IMyMusicInfoService {
 
 	// 查找歌手信息
 	@Override
-	public List<SingerInfo> showSinger( Integer uid) {
-		return mapper.showSinger(uid);
+	public List<SingerInfo> showSinger( SingerInfo si) {
+		return mapper.showSinger(si);
 	}
 	
 	// 根据歌手id取消关注
@@ -97,6 +97,25 @@ public class MyMusicInfoServiceImpl implements IMyMusicInfoService {
 		System.out.println(mids);
 		map.put("lid", lid);
 		return mapper.AddSongsToPlayList(map);
+	}
+	
+	
+	// 根据歌单id查询歌单信息
+	@Override
+	public List<UserListInfo> getPlayListInfo(UserListInfo ul) {
+		return mapper.getPlayListInfo(ul);
+	}
+	
+	// 根据歌单id查询歌单头部信息
+	@Override
+	public List<UserListInfo> getPlayList(UserListInfo ul) {
+		return mapper.getPlayList(ul);
+	}
+
+	// 根据歌单id修改歌单图片
+	@Override
+	public Integer updatePic(UserListInfo ul) {
+		return mapper.updatePic( ul);
 	}
 	
 	

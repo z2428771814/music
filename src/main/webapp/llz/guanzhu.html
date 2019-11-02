@@ -1878,15 +1878,15 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 	<script type="text/javascript" src="js/basic2.js"></script>
 	<script type="text/javascript">
 	
-		$(function(){
-			showSinger();
-		});
+		$(
+			showSinger()
+		)
 		
 		
 		function showSinger(){
 			var str = "";
 			var uid = $("#uid").val();
-			$.post("../myMusic/showSinger",{uid:uid},function(data){
+			$.post("../myMusic/showSinger",null,function(data){
 				console.log(data);
 				$.each(data,function(index,item){
 					str += '<li class="singer_list__item" ><div class="singer_list__item_box">';

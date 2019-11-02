@@ -379,9 +379,9 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 							<i class="mod_btn_green__icon_play"></i>播放全部
 						</a> 
 						
-						<!-- <a href="javascript:void(0);" onclick="addrsShow()" id="" class="mod_btn js_all_fav" data-stat="y_new.profile.like.song.addall">
+						<a href="javascript:void(0);" onclick="addrsShow()" id="" class="mod_btn js_all_fav" data-stat="y_new.profile.like.song.addall">
 							<i class="mod_btn__icon_add"></i>添加到
-						</a>  -->
+						</a>  
 						
 						<div id="addrs_gedan">
 							<img  src="image/close.png" title="关闭" onclick="hiddenDiv2()"/>
@@ -801,7 +801,7 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 	var str2 = '';
 	 // 查询用户的歌单的名字
 	function findGedanName(){
-		 $.post("../myMusic/findGedanName",{uid:uid},function(data){
+		 $.post("../myMusic/findGedanName",null,function(data){
 			 console.log(data);
 			 $.each(data,function(index,item){
 					str1 += '<option id ="name" value="'+item.lid+'">'+ item.lname +'</option>';
@@ -951,6 +951,7 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 	// 添加多个给钱到歌单
 	function AddSongsToPlayList(){
 		lids = $("#lnames").val();
+		alert(lids+"-"+Musicid)
 		$.post("../myMusic/AddSongsToPlayList",{lid:lids,mids:Musicid},function(data){
 			if( data > 0 ){
 				alert("添加成功");

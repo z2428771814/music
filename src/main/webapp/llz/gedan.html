@@ -371,7 +371,7 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 				style="display: none;">我的已购</a> <a class="mod_tab__item"
 				href="cjgedan.html" id="create_tab" data-tab="create"
 				data-stat="y_new.profile.tab.create_playlist">我创建的歌单</a> <a
-				class="mod_tab__item" href="javascript:;" id="focus_tab"
+				class="mod_tab__item" href="guanzhu.html;" id="focus_tab"
 				data-tab="focus" data-stat="y_new.profile.tab.focus">关注</a> <a
 				class="mod_tab__item" href="javascript:;" id="fans_tab"
 				data-tab="fans" data-stat="y_new.profile.tab.fans">粉丝</a> <a
@@ -876,12 +876,12 @@ if(window.ActiveXObject || window.msIsStaticHTML){
 					str += '<li class="playlist__item" lid="'+ item.lid +'"';
 					str += 'onmouseover="this.className=(this.className+&#39; playlist__item--hover&#39;)"';
 					str += 'onmouseout="this.className=this.className.replace(/ playlist__item--hover/, &#39;&#39;)">';
-					str += '<div class="playlist__cover"><a href="" class="js_playlist" data-disstid="1033778404">';
-					str += '<img src="image/300.jpg" onerror="this.src=&#39;//y.gtimg.cn/mediastyle/global/img/cover_playlist.png?max_age=31536000&#39;;this.onerror=null;"';
-					str += 'alt="伤感旋律带给你不眠之夜" class="playlist__pic">';
+					str += '<div class="playlist__cover"><a href="gedanInfo.html#'+ item.lid +'" class="js_playlist" data-disstid="1033778404">';
+					str += '<img src="'+item.by3+'" onerror="this.src=&#39;//y.gtimg.cn/mediastyle/global/img/cover_playlist.png?max_age=31536000&#39;;this.onerror=null;"';
+					str += 'alt="" class="playlist__pic">';
 					str += '</a></div><h4 class="playlist__title"><span class="playlist__title_txt"> ';
-					str += '<a href="" class="js_playlist" data-disstid="1033778404"';
-					str += 'title="伤感旋律带给你不眠之夜">'+ item.lname +'</a></span></h4><div class="mod_list_menu">';
+					str += '<a href="gedanInfo.html#'+ item.lid +'" class="js_playlist" data-disstid="1033778404"';
+					str += 'title="">'+ item.lname +'</a></span></h4><div class="mod_list_menu">';
 					str += '<a href="javascript:;" class="list_menu__item list_menu__play js_play"';
 					str += 'data-stat="y_new.profile.like.playlist.play" title="播放"> ';
 					str += '<i class="list_menu__icon_play"></i> <span class="icon_txt">播放</span></a>';

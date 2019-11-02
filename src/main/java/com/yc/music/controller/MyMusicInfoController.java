@@ -104,8 +104,14 @@ public class MyMusicInfoController {
 	 * @return
 	 */
 	@RequestMapping("/showSinger")
-	public List<SingerInfo> showSinger(Integer uid){
-		return service.showSinger(uid);
+	public List<SingerInfo> showSinger(SingerInfo si,HttpSession session){
+		Object obj = session.getAttribute("loginUser");
+		if( obj == null ){
+			return null;
+		}
+		UserInfo ui = (UserInfo) obj;
+		si.setUid(ui.getUid());
+		return service.showSinger(si);
 	}
 	
 	/**
@@ -153,5 +159,50 @@ public class MyMusicInfoController {
 	public int AddSongsToPlayList(Integer lid , String mids){
 		return service.AddSongsToPlayList(lid, mids);
 		
+	}
+	
+	/**
+	 * 根据歌单id查询歌单信息
+	 * @param ul
+	 * @return
+	 */
+	@RequestMapping("/getPlayListInfo")
+	public List<UserListInfo> getPlayListInfo(UserListInfo ul , HttpSession session){
+		Object obj = session.getAttribute("loginUser");
+		if( obj == null ){
+			return null;
+		}
+		UserInfo ui = (UserInfo) obj;
+		ul.setUid(ui.getUid());
+		return service.getPlayListInfo(ul);
+	}
+	
+	/**
+	 * 根据歌单id查询歌单信息
+	 * @param ul
+	 * @return
+	 */
+	@RequestMapping("/getPlayList")
+	public List<UserListInfo> getPlayList(UserListInfo ul , HttpSession session){
+		Object obj = session.getAttribute("loginUser");
+		if( obj == null ){
+			return null;
+		}
+		UserInfo ui = (UserInfo) obj;
+		ul.setUid(ui.getUid());
+		return service.getPlayList(ul);
+	}
+	
+	/**
+	 * 根据歌单id修改歌单图片
+	 * @param ul
+	 * @param pic 歌单第一张歌曲的图片
+	 * @return
+	 */
+	@RequestMapping("/updatePic")
+	public Integer updatePic(String pice , UserListInfo ul) {
+		ul.setBy3(pice);
+		System.out.println(ul.getBy3());
+		return service.updatePic( ul);
 	}
 }

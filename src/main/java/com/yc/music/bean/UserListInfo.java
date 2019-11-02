@@ -18,10 +18,22 @@ public class UserListInfo implements Serializable {
 	// 歌单里面音乐的数量
 	private int num;
 	
+	// 音乐id
+	private int mid;
+	// 歌手 id
+	private int sgid;
+	// 歌曲名字
+	private String mname;
+	// 歌曲图片
+	private String pices;
+	// 歌手名
+	private String sgname;
+	
 	@Override
 	public String toString() {
 		return "UserListInfo [lid=" + lid + ", uid=" + uid + ", lname=" + lname + ", by1=" + by1 + ", by2=" + by2
-				+ ", by3=" + by3 + ", uname=" + uname + ", num=" + num + "]";
+				+ ", by3=" + by3 + ", uname=" + uname + ", num=" + num + ", mid=" + mid + ", sgid=" + sgid + ", mname="
+				+ mname + ", pices=" + pices + ", sgname=" + sgname + "]";
 	}
 
 	public int getLid() {
@@ -88,8 +100,44 @@ public class UserListInfo implements Serializable {
 		this.num = num;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public int getMid() {
+		return mid;
+	}
+
+	public void setMid(int mid) {
+		this.mid = mid;
+	}
+
+	public int getSgid() {
+		return sgid;
+	}
+
+	public void setSgid(int sgid) {
+		this.sgid = sgid;
+	}
+
+	public String getMname() {
+		return mname;
+	}
+
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
+
+	public String getPices() {
+		return pices;
+	}
+
+	public void setPices(String pices) {
+		this.pices = pices;
+	}
+
+	public String getSgname() {
+		return sgname;
+	}
+
+	public void setSgname(String sgname) {
+		this.sgname = sgname;
 	}
 
 	@Override
@@ -101,7 +149,12 @@ public class UserListInfo implements Serializable {
 		result = prime * result + ((by3 == null) ? 0 : by3.hashCode());
 		result = prime * result + lid;
 		result = prime * result + ((lname == null) ? 0 : lname.hashCode());
+		result = prime * result + mid;
+		result = prime * result + ((mname == null) ? 0 : mname.hashCode());
 		result = prime * result + num;
+		result = prime * result + ((pices == null) ? 0 : pices.hashCode());
+		result = prime * result + sgid;
+		result = prime * result + ((sgname == null) ? 0 : sgname.hashCode());
 		result = prime * result + uid;
 		result = prime * result + ((uname == null) ? 0 : uname.hashCode());
 		return result;
@@ -138,7 +191,26 @@ public class UserListInfo implements Serializable {
 				return false;
 		} else if (!lname.equals(other.lname))
 			return false;
+		if (mid != other.mid)
+			return false;
+		if (mname == null) {
+			if (other.mname != null)
+				return false;
+		} else if (!mname.equals(other.mname))
+			return false;
 		if (num != other.num)
+			return false;
+		if (pices == null) {
+			if (other.pices != null)
+				return false;
+		} else if (!pices.equals(other.pices))
+			return false;
+		if (sgid != other.sgid)
+			return false;
+		if (sgname == null) {
+			if (other.sgname != null)
+				return false;
+		} else if (!sgname.equals(other.sgname))
 			return false;
 		if (uid != other.uid)
 			return false;
@@ -150,7 +222,8 @@ public class UserListInfo implements Serializable {
 		return true;
 	}
 
-	public UserListInfo(int lid, int uid, String lname, String by1, String by2, String by3, String uname, int num) {
+	public UserListInfo(int lid, int uid, String lname, String by1, String by2, String by3, String uname, int num,
+			int mid, int sgid, String mname, String pices, String sgname) {
 		super();
 		this.lid = lid;
 		this.uid = uid;
@@ -160,11 +233,17 @@ public class UserListInfo implements Serializable {
 		this.by3 = by3;
 		this.uname = uname;
 		this.num = num;
+		this.mid = mid;
+		this.sgid = sgid;
+		this.mname = mname;
+		this.pices = pices;
+		this.sgname = sgname;
 	}
 
 	public UserListInfo() {
 		super();
 	}
+	
 	
 	
 	

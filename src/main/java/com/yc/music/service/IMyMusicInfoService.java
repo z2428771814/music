@@ -33,7 +33,7 @@ public interface IMyMusicInfoService {
 	public int createGedan(UserListInfo ul );
 	
 	//查询歌手信息
-	public List<SingerInfo> showSinger(Integer uid);
+	public List<SingerInfo> showSinger(SingerInfo si);
 	
 	// 根据歌手id取消关注
 	public int unfollow(Integer sgid);
@@ -46,4 +46,14 @@ public interface IMyMusicInfoService {
 		
 	// 添加多个歌曲到歌单
 	public int AddSongsToPlayList(Integer lid, String mids);
+	
+	// 根据歌单id查询歌单信息
+	public List<UserListInfo> getPlayListInfo(UserListInfo ul);
+	
+	// 根据歌单id查询歌单头部信息
+	public List<UserListInfo> getPlayList(UserListInfo ul);
+	
+	// 根据歌单id修改歌单图片
+	public Integer updatePic( UserListInfo ul);
+	
 }

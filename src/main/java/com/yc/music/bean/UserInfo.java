@@ -18,6 +18,10 @@ public class UserInfo implements Serializable {
 	private String by2;
 	private String by3;
 	
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "UserInfo [uid=" + uid + ", uname=" + uname + ", pwd=" + pwd + ", email=" + email + ", vip=" + vip
