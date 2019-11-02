@@ -665,7 +665,7 @@
 			$.post("../myMusic/getPlayListInfo",{lid:lid},function(data){
 				console.log(data);
 				// 获取歌单的第一个歌曲图片
-				var pice=data[0].pices;
+				var pice='../../'+data[0].pices;
 				console.log(pice);
 				$("#images").attr('src',pice);
 				// 歌区信息
