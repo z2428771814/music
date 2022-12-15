@@ -11,7 +11,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- 放这个的意思就是假如到时候我们更改版本的时候就只需要改这个，其他三个就会自动改 -->
-		<spring.version>5.1.0.RELEASE</spring.version>
+		<spring.version>5.2.20.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
